@@ -1,6 +1,11 @@
 const mongoose = require('mongoose')
+const {isEmail} = require('validator')
+const Schema = mongoose.Schema
+//  const bcrypt= require('bcrypt')
 
-module.exports = new mongoose.Schema({
+
+
+const guestSchema = new Schema({
     userName:{ 
         type: String,
         required: [true, "user should be provided"]
@@ -22,3 +27,8 @@ module.exports = new mongoose.Schema({
     required: [true, "pass should be provided"],
  }
 })
+
+
+
+const Guest = mongoose.model("guest",guestSchema)
+module.exports = Guest
