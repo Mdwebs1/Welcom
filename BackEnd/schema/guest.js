@@ -22,7 +22,7 @@ const guestSchema = new Schema({
         validate:[isEmail,"is invalid"]
     },
     password:{
-    type:String,
+    type:Number,
     minLength:[6,"pass more than 6"],
     required: [true, "pass should be provided"],
  }
