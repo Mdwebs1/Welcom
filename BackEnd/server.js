@@ -5,6 +5,7 @@ const app = express()
 const cookieParser = require('cookie-parser');
 const guestRouter = require("./router/guestRouter")
 const hostRouter = require("./router/hostRouter")
+const { checkGuest,checkHost } = require('./middleware/guestMiddleware');
 
 
 app.use(express.json());
@@ -50,3 +51,5 @@ app.get('/set-cookies', (req, res) => {
       console.log("connection error", err);
     })
   );
+
+  app.get('*', checkGuest,checkHost);

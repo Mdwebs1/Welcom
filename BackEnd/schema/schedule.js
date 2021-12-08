@@ -1,15 +1,17 @@
-// const mongoose = require('mongoose')
-// const {isEmail} = require('validator')
-// const Schema = mongoose.Schema
-// const hostSchema = require('../schema/host')
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+const hostSchema = require('../schema/host').schema
+const guestSchema = require('../schema/guest').schema
 
 
 
-// const scheduleSchema = new Schema({
-//     hostId:{ hostSchema }, 
-//     date: Date(),
-//     availability: true
-// })
+const scheduleSchema = new Schema({
+    host:{type:mongoose.Schema.Types.ObjectId,ref:'host'}, 
+    guest:{type:mongoose.Schema.Types.ObjectId,ref:'guest'}, 
+  
+    date: {type: Date,default:Date.now},
+   
+})
 
-// const Schedule = mongoose.model("schedule",scheduleSchema)
-// module.exports = Schedule
+const Schedule = mongoose.model("schedule",scheduleSchema)
+module.exports = Schedule

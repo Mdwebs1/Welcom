@@ -8,11 +8,12 @@ const Schema = mongoose.Schema
 const guestSchema = new Schema({
     userName:{ 
         type: String,
-        required: [true, "user should be provided"]
+        required: [true, "user should be provided"],
+        unique: true
     }, 
     name:{
         type: String,
-        required: [true, "name should be provided"]
+       
     },
     email:{
         type:String,

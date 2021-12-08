@@ -1,7 +1,8 @@
 const express = require("express");
 let router = express.Router();
-const mongoose = require('mongoose')
-const guest = require('../schema/guest')
+const Guest = require('../schema/guest')
+const Host = require('../schema/host')
+const Schedule = require('../schema/schedule')
 const jwt = require('jsonwebtoken')
 
 
@@ -45,7 +46,7 @@ const createToken =(id)=>{
 //get
 router.get("/", (req, res) => {
    
-    guest.find({}, (err, gueste) => {
+  Guest.find({}, (err, gueste) => {
       res.send(gueste);
        });
 });
@@ -54,7 +55,7 @@ router.get("/", (req, res) => {
 //endpoint
 router.get("/:id", (req, res) => {
     console.log(req.params.id);
-    guest.find({_id: req.params.id},(err, gueste)=>{
+    Guest.find({_id: req.params.id},(err, gueste)=>{
         res.send(gueste)
      }) 
 
@@ -64,10 +65,10 @@ router.get("/:id", (req, res) => {
 
    //post for guest signup
 router.post("/signup",async (req, res) => {
-    const {name,userName,email, password} = req.body;
+    const {userName,email, password} = req.body;
     try{
       
-      const guestUser= await guest.create({name,userName,email, password})
+      const guestUser= await Guest.create({userName,email, password})
       const token =createToken(guestUser._id)
       res.cookie('jwt',token,{httpOnly:true , maxAge: maxAge * 1000})
       res.status(201).json({guestUser : guestUser,token:token})
@@ -88,7 +89,7 @@ router.post("/login", async(req, res) => {
     const {email, password} = req.body;
     try{
   
-      const guestUser= await guest.login(email, password)
+      const guestUser= await Guest.login(email, password)
       const token =createToken(authorUser._id)
       res.cookie('jwt',token,{httpOnly:true , maxAge: maxAge * 1000})
       res.status(200).json({guestUser : guestUser,token:token})
@@ -108,6 +109,27 @@ router.get("/logout", (req, res) => {
     res.redirect('/');
 });
 
-
+router.post("/reservation", (req, res) => {
+   
+  Host.findById({_id:req.body.hostId}).then((host) => {
+    const findHost= host;
+    console.log('host',+findHost);
+ Guest.findById({_id:req.body.guestId}).then((guest) => {
+   const findGuest= guest;
+   console.log(findGuest);
+   Schedule.findOne({host:findHost, data:req.body.date}).then((schedule) => {
+     if(schedule){
+       res.send("والله شوووف انا مش مش عايز انا ماعنديش")
+     }else{
+      Schedule.create({host:findHost,guest:findGuest}).then((schedule) =>{
+        res.send("create successfully"+schedule);
+      })
+     }
+   })
+ 
+ })
+  })
+   
+});
 
 module.exports = router;

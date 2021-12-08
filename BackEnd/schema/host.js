@@ -1,12 +1,14 @@
 const mongoose = require('mongoose')
 const {isEmail} = require('validator')
+const homeSchema= require('../schema/homeInfo').schema
 const Schema = mongoose.Schema
- const ScheduleSchema = require('../schema/schedule')
 
+ 
 const hostSchema = new Schema({
     userName:{ 
         type: String,
-        required: [true, "user should be provided"]
+        required: [true, "user should be provided"],
+        unique: true,
     }, 
     name:{
         type: String,
@@ -20,16 +22,12 @@ const hostSchema = new Schema({
         validate:[isEmail,"is invalid"]
     },
     password:{
-    type:String,
+    type:Number,
     minLength:[6,"pass more than 6"],
     required: [true, "pass should be provided"],
  },
- image:{
-    type:String,
-},
- availableDays:{
-    type:[ ScheduleSchema ]
- }
+ homes:[homeSchema],
+
 })
 
 const Host = mongoose.model("host",hostSchema)
