@@ -2,8 +2,9 @@ const express = require("express");
 let router = express.Router();
 const Host = require('../schema/host')
 const Home = require('../schema/homeInfo')
-const Schedule = require('../schema/schedule')
 const jwt = require('jsonwebtoken')
+const validatePhoneNumber = require('validate-phone-number-node-js');
+
 
 
 
@@ -90,57 +91,63 @@ router.post("/signup",async (req, res) => {
 
 //post
 
-router.post("/", async (req, res) => {
-  const host= new Host({
-      name:req.body.name,
-      userName:req.body.userName,
-      email:req.body.email,
-      password:req.body.password
-  })
+// router.post("/", async (req, res) => {
+//   const host= new Host({
+//       name:req.body.name,
+//       userName:req.body.userName,
+//       email:req.body.email,
+//       password:req.body.password
+//   })
 
-try{
-  await host.save()
-  const host=await Host.find()
-  res.status(201).send(host)
-}
-catch(e){
-  console.error(e)
-}
-console.log("added")
+// try{
+//   await host.save()
+//   const host=await Host.find()
+//   res.status(201).send(host)
+// }
+// catch(e){
+//   console.error(e)
+// }
+// console.log("added")
      
-});
+// });
 
 
-//to move from page to another page
+
 
 //post
-router.post("/", (req, res) => {
-  console.log(req.body)
-  Host.create(req.body, () => {
-      res.send("saved!");
-      });
-});
+// router.post("/", (req, res) => {
+//   console.log(req.body)
+//   Host.create(req.body, () => {
+//       res.send("saved!");
+//       });
+// });
 
-router.post("/host/:id", async (req, res) => {
+
+//add home to specific host
+router.post("/addHome/:id", async (req, res) => {
   const _id = req.params.id
   const host =  await Host.findById({_id})
-  console.log(host)
- 
-  const newHome = new Home({
+  // console.log(host)
+  const result = validatePhoneNumber.validate(req.body.phoneNumber)
+  if(result) {  const newHome = new Home({
         
-          phoneNumber: req.body.phoneNumber,
-          image: req.body.image,
-          informations:req.body.informations
-      })
+    phoneNumber: req.body.phoneNumber,
+    image: req.body.image,
+    informations:req.body.informations
+})
 
-     host.homes.push(newHome)
+host.homes.push(newHome)
 
-    await host.save()
-     res.send(host)
+await host.save()
+res.send(host)
+}else{
+  res.send("الرقم يالطيب غلط !!!!")
+}
+
 });
 
 
-//ubdate information for host lik change image...
+//ubdate information for host like change image...
 
 router.patch("/updateProfile", (req, res) => {
   Host.update({'homes._id': req.body.id},{
