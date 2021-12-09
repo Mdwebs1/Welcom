@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const {isEmail} = require('validator')
 const homeSchema= require('../schema/homeInfo').schema
 const Schema = mongoose.Schema
+const bcrypt= require('bcrypt')
 
  
 const hostSchema = new Schema({
@@ -22,13 +23,41 @@ const hostSchema = new Schema({
         validate:[isEmail,"is invalid"]
     },
     password:{
-    type:Number,
+    type:String,
     minLength:[6,"pass more than 6"],
     required: [true, "pass should be provided"],
  },
  homes:[homeSchema],
 
 })
+
+
+//fire a function after doc saved to db
+
+hostSchema.post('save', function (doc, next) {
+    console.log('new user was created & saved', doc);
+    next()
+})
+
+//fire a function befor doc saved to db
+hostSchema.pre('save',async function ( next) {
+ const salt = await bcrypt.genSalt()
+ this.password = await bcrypt.hash(this.password, salt)
+    next()
+})
+
+hostSchema.statics.login= async function (email,password){
+    
+    const host= await this.findOne({ email: email});
+    if(host){
+       const hostes= await bcrypt.compare(password,host.password)
+       if(hostes){
+           return host
+       }
+       throw Error('incorect password')
+    }
+    throw Error('incorect email')
+}
 
 const Host = mongoose.model("host",hostSchema)
 module.exports = Host

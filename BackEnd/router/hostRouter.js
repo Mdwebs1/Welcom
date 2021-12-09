@@ -64,6 +64,24 @@ router.get("/:id", (req, res) => {
 
   });
 
+  //post for guesglogin
+router.post("/login", async(req, res) => {
+  const {email, password} = req.body;
+  console.log("welcome")
+  try{
+
+    const hostUser= await Host.login(email, password)
+    const token =createToken(hostUser._id)
+    res.cookie('jwt',token,{httpOnly:true , maxAge: maxAge * 1000})
+    res.status(200).json({hostUser : hostUser,token:token})
+  }
+  catch(err){
+      const errors = handleError(err);
+    res.status(400).json({errors})
+  }
+});
+
+
 
 
    //post for Host signup

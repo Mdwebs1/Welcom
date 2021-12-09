@@ -6,6 +6,7 @@ const Schedule = require('../schema/schedule')
 const jwt = require('jsonwebtoken')
 
 
+
 //handle errors
 const handleError = (err)=>{
     
@@ -87,10 +88,11 @@ router.post("/signup",async (req, res) => {
 //post for guesglogin
 router.post("/login", async(req, res) => {
     const {email, password} = req.body;
+    console.log("llll")
     try{
   
       const guestUser= await Guest.login(email, password)
-      const token =createToken(authorUser._id)
+      const token =createToken(guestUser._id)
       res.cookie('jwt',token,{httpOnly:true , maxAge: maxAge * 1000})
       res.status(200).json({guestUser : guestUser,token:token})
     }
