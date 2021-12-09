@@ -74,7 +74,7 @@ router.post("/signup",async (req, res) => {
       const hostUser= await Host.create({userName,name,email, password})
       const token =createToken(hostUser._id)
       res.cookie('jwt',token,{httpOnly:true , maxAge: maxAge * 1000})
-      res.status(201).json({hostUser : hostUser,token:token})
+      res.status(201).json({hostUser : hostUser,token:token,name : userName})
     }
     catch(err){
       const error = handleError(err)
