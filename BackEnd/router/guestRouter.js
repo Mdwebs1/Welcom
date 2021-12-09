@@ -63,15 +63,15 @@ router.get("/:id", (req, res) => {
 
 
 
-   //post for guest signup
+   //post for guest signup;
 router.post("/signup",async (req, res) => {
-    const {userName,email, password} = req.body;
+    const {name,userName,email, password} = req.body;
     try{
       
-      const guestUser= await Guest.create({userName,email, password})
+      const guestUser= await Guest.create({name,userName,email, password})
       const token =createToken(guestUser._id)
       res.cookie('jwt',token,{httpOnly:true , maxAge: maxAge * 1000})
-      res.status(201).json({guestUser : guestUser,token:token})
+      res.status(201).json({guestUser : guestUser,token:token,name : userName})
     }
     catch(err){
       const error = handleError(err)
