@@ -167,11 +167,11 @@ res.send(host)
 
 //ubdate information for host like change image...
 
-router.patch("/updateHomes", (req, res) => {
+router.put("/updateHomes", (req, res) => {
   Host.update({'homes._id': req.body.id},{
   "$set": { 
     'homes.$.phoneNumber': req.body.phoneNumber,
-    'homes.$.image': req.body.image,
+    'homes.$.homeImage': req.body.homeImage,
     'homes.$.informations':req.body.informations}
    
       

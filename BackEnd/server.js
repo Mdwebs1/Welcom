@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require('mongoose')
-const cors = require("cors");
+const cors = require('cors');
 const app = express()
 const cookieParser = require('cookie-parser');
 const guestRouter = require("./router/guestRouter")
@@ -10,7 +10,7 @@ const { checkGuest,checkHost } = require('./middleware/guestMiddleware');
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors())
+app.use(cors());
 // for file in router
 app.use('/guestRouter',guestRouter)
 app.use('/hostRouter',hostRouter)
