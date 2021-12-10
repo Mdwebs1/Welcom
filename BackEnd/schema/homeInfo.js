@@ -5,15 +5,15 @@ const homeSchema = new Schema({
 
  image:{
     type:String,
-    required: [true, "be provided"],
+    required: [true, "image be provided"],
 }, 
  phoneNumber:{
     type:Number,
-    required: [true, "be provided"],
+    required: [true, "phoneNumber be provided"],
  },
  informations:{
      type:String,
-     required: [true, "be provided"],
+     required: [true, "informations be provided"],
 
  }
  

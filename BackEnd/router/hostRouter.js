@@ -64,7 +64,7 @@ router.get("/:id", (req, res) => {
 
   });
 
-  //post for guesglogin
+  //post for gues login
 router.post("/login", async(req, res) => {
   const {email, password} = req.body;
   console.log("welcome")
@@ -167,7 +167,7 @@ res.send(host)
 
 //ubdate information for host like change image...
 
-router.patch("/updateProfile", (req, res) => {
+router.patch("/updateHomes", (req, res) => {
   Host.update({'homes._id': req.body.id},{
   "$set": { 
     'homes.$.phoneNumber': req.body.phoneNumber,
@@ -180,8 +180,10 @@ router.patch("/updateProfile", (req, res) => {
       });
 });
 
+
+
 //host can delet hes information
-router.delete("/:id", (req, res) => {
+router.delete("/deleteProfile/:id", (req, res) => {
   Host.deleteOne({_id:req.params.id}, ( ) => {
       Host.find({}, (err, host) => {
           res.send("deleted");
@@ -189,6 +191,32 @@ router.delete("/:id", (req, res) => {
 
       });
 });
+
+
+//home delete
+
+//host can delet hes information
+router.delete("/deleteHome", async(req, res) => {
+
+  const hoomeId = req.body.homeId;
+try{
+  const host = await Host.findById(req.body.hostId);
+  if(!host){
+    return res.status(404).send()
+  }
+  await host.homes.pull({_id:hoomeId})
+  await host.save()
+  res.status(201).send(host)
+}
+
+catch(e){
+  res.status(500).send();
+  console.error(e);
+}
+
+
+      });
+
 
 
 
