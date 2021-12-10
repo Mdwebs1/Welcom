@@ -171,8 +171,9 @@ router.put("/updateHomes", (req, res) => {
   Host.update({'homes._id': req.body.id},{
   "$set": { 
     'homes.$.phoneNumber': req.body.phoneNumber,
-    'homes.$.homeImage': req.body.homeImage,
-    'homes.$.informations':req.body.informations}
+    'homes.$.image':   req.body.homeImage,
+    'homes.$.informations':req.body.informations
+  }
    
       
   }, () => {
