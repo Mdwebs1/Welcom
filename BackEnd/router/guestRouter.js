@@ -111,21 +111,25 @@ router.get("/logout", (req, res) => {
     res.redirect('/');
 });
 
+
+
 router.post("/booking", (req, res) => {
    
   Host.findById({_id:req.body.hostId}).then((host) => {
     const findHost= host;
-    console.log('host',+findHost);
+    console.log('host'+host);
  Guest.findById({_id:req.body.guestId}).then((guest) => {
    const findGuest= guest;
    console.log(findGuest);
-   Schedule.findOne({host:findHost, data:req.body.date}).then((schedule) => {
-     if(schedule){
-       res.send("والله شوووف انا مش مش عايز انا ماعنديش")
-     }else{
-      Schedule.create({host:findHost,guest:findGuest}).then((schedule) =>{
-        res.send("create successfully"+schedule);
+   Schedule.findOne({host:findHost, date:req.body.date}).then((schedule) => {
+     console.log(req.body.date+"jjj")
+     if(!schedule){
+      Schedule.create({host:findHost,guest:findGuest,date:req.body.date}).then((schedule) =>{
+        res.send(schedule);
       })
+     }else{
+      res.send("والله شوووف انا مش مش عايز انا ماعنديش")
+
      }
    })
  
