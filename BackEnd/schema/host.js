@@ -27,6 +27,9 @@ const hostSchema = new Schema({
     minLength:[6,"pass more than 6"],
     required: [true, "pass should be provided"],
  },
+ hostImage:{
+    type:String
+ },
  homes:[homeSchema],
 
 })

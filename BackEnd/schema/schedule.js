@@ -8,7 +8,6 @@ const guestSchema = require('../schema/guest').schema
 const scheduleSchema = new Schema({
     host:{type:mongoose.Schema.Types.ObjectId,ref:'host'}, 
     guest:{type:mongoose.Schema.Types.ObjectId,ref:'guest'}, 
-  
     date: {type: Date,default:Date.now},
    
 })

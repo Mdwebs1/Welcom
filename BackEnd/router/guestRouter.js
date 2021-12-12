@@ -111,7 +111,7 @@ router.get("/logout", (req, res) => {
     res.redirect('/');
 });
 
-router.post("/reservation", (req, res) => {
+router.post("/booking", (req, res) => {
    
   Host.findById({_id:req.body.hostId}).then((host) => {
     const findHost= host;

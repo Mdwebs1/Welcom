@@ -2,9 +2,9 @@ const express = require("express");
 let router = express.Router();
 const Host = require('../schema/host')
 const Home = require('../schema/homeInfo')
+const Schedule = require('../schema/schedule')
 const jwt = require('jsonwebtoken')
 const validatePhoneNumber = require('validate-phone-number-node-js');
-
 
 
 
@@ -64,6 +64,23 @@ router.get("/:id", (req, res) => {
 
   });
 
+  //endpoint for booking
+router.get("/booking/:id", async(req, res) => {
+  console.log(req.params.id);
+  try{
+    const schedule= await Schedule.find({$or:[{host: req.params.id},{guest: req.params.id}]}).populate('host guest')
+      
+      if(!schedule){
+                res.send("ther is no schedule")
+      }
+      res.send(schedule)
+  }
+      catch (errors) {
+        res.status(400).json({errors})
+      } 
+
+    })
+
   //post for gues login
 router.post("/login", async(req, res) => {
   const {email, password} = req.body;
@@ -86,10 +103,10 @@ router.post("/login", async(req, res) => {
 
    //post for Host signup
 router.post("/signup",async (req, res) => {
-    const {userName,name,email, password} = req.body;
+    const {userName,name,email, password,hostImage} = req.body;
     try{
       
-      const hostUser= await Host.create({userName,name,email, password})
+      const hostUser= await Host.create({userName,name,email, password,hostImage})
       const token =createToken(hostUser._id)
       res.cookie('jwt',token,{httpOnly:true , maxAge: maxAge * 1000})
       res.status(201).json({hostUser : hostUser,token:token,name : userName})
@@ -104,41 +121,6 @@ router.post("/signup",async (req, res) => {
 });
 
 
-
-
-
-//post
-
-// router.post("/", async (req, res) => {
-//   const host= new Host({
-//       name:req.body.name,
-//       userName:req.body.userName,
-//       email:req.body.email,
-//       password:req.body.password
-//   })
-
-// try{
-//   await host.save()
-//   const host=await Host.find()
-//   res.status(201).send(host)
-// }
-// catch(e){
-//   console.error(e)
-// }
-// console.log("added")
-     
-// });
-
-
-
-
-//post
-// router.post("/", (req, res) => {
-//   console.log(req.body)
-//   Host.create(req.body, () => {
-//       res.send("saved!");
-//       });
-// });
 
 
 //add home to specific host
@@ -165,6 +147,7 @@ res.send(host)
 });
 
 
+
 //ubdate information for host like change image...
 
 router.put("/updateHomes", (req, res) => {
@@ -180,6 +163,34 @@ router.put("/updateHomes", (req, res) => {
       res.send("updated!");
       });
 });
+
+//update host profile
+
+  router.patch('/updateProdile/:id', async (req,res)=> {
+    const allowedUpdates = ['userName', 'email', 'name','password','hostImage'];
+    const updates = Object.keys(req.body)
+    const isValidOperation = updates.every((update)=> allowedUpdates.includes(update))
+    if(!isValidOperation) {
+        return res.status(400).send({erro: 'Invalid updates'});
+        // anything not expected from the todos
+    }
+    try{
+        const host = await Host.findOne({_id: req.params.id});
+        // find id passed into the function
+        if(!host) {return res.status(404).send(404).send()}
+        updates.forEach((update)=> {
+          host[update] = req.body[update]
+            // update the values and keys dynamically
+        })
+        await host.save()
+        res.status(200).send(host)
+    } catch(e){
+        res.status(400).send(e)
+        console.error(e)
+    }
+  })
+   
+      
 
 
 
