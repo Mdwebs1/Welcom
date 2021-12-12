@@ -190,8 +190,32 @@ router.put("/updateHomes", (req, res) => {
     }
   })
    
-      
+  //chnge request
+  
+  router.patch('/acceptedBokking', async (req,res)=> {
+  const schedule =  await Schedule.findById({_id:req.body.id});
+       console.log(schedule.bookingStatues)
+     if(schedule.bookingStatues==="Pending" || schedule.bookingStatues==="Rejected"){
+      schedule.bookingStatues="Accepted" 
+      await schedule.save()
+      const schedules= await Schedule.find({host: req.body.hostID}).populate('host guest','name')
+      res.status(200).send(schedules) 
+     }
+            
+  })
 
+  router.patch('/rejectedBooking', async (req,res)=> {
+    const schedule =  await Schedule.findById({_id:req.body.id});
+         console.log(schedule.bookingStatues )
+       if(schedule.bookingStatues==="Pending" || schedule.bookingStatues==="Accepted"){
+        schedule.bookingStatues="Rejected" 
+        await schedule.save()
+        const schedules= await Schedule.find({host: req.body.hostID}).populate('host guest','name')
+        res.status(200).send(schedules) 
+       }
+              
+    })
+  
 
 
 //host can delet hes information
