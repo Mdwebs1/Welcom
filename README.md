@@ -10,23 +10,23 @@
 
 ## User Stories
 
-- **Signup:** As a user, I can register on the platform so that I can reserve a suitable place for me
+- **Signup:** As a user, I can register on the platform so that I can reserve a suitable place for me.
 
-- **Login:** As a user I can login to the platform so that I can log my exit points
+- **Login:** As a user I can login to the platform so that I can log my exit points.
 
-- **Logout:** As a user I can logout from the platform so no one else can use it
+- **Logout:** As a user I can logout from the platform so no one else can use it.
 
-- **house reservation **As a user I can book a house to stay in
+- **house reservation **As a user I can book a house to stay in.
 
-- **View all homes** As a user, I want to see all the homes that I can book in and their owners and choose the appropriateone
+- **View all homes** As a user, I want to see all the homes that I can book in and their owners and choose the appropriate one.
 
-- **Edit Guest** As a guest I can edit my profile, add or substract exit points
+- **Edit Guest** As a guest I can edit my profile, add or substract exit points.
 
-- **Edit Host** As a host I can edit my profile, add or substract exit points
+- **Edit Host** As a host I can edit my profile, add or substract exit points.
 
-- **Edit Home** As a host I can edit my home, add or substract exit point
+- **Edit Home** As a host I can edit my home, add or substract exit point.
 
-- **Booking** As a host I can except or reject the request from the guest
+- **Booking** As a host I can except or reject the request from the guest.
 
   
 
