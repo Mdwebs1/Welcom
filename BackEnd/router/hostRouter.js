@@ -68,7 +68,7 @@ router.get("/:id", (req, res) => {
 router.get("/booking/:id", async(req, res) => {
   console.log(req.params.id);
   try{
-    const schedule= await Schedule.find({$or:[{host: req.params.id},{guest: req.params.id}]}).populate('host guest')
+    const schedule= await Schedule.find({$or:[{host: req.params.id},{guest: req.params.id}]}).populate('host guest','name')
       
       if(!schedule){
                 res.send("ther is no schedule")
