@@ -27,6 +27,8 @@ const userSignin=(e)=> {
                const guestSignin = jwt(token)
                localStorage.setItem('token',token)
                localStorage.setItem('user',res.data.guestUser)
+               localStorage.setItem('typeOfUser',"guestUser")
+
                alert('true') 
                setUser(res.data);
                console.log(res.data)
@@ -46,9 +48,10 @@ const userSignin=(e)=> {
       const hostSignin = jwt(token)
       localStorage.setItem('token',token)
       localStorage.setItem('user',res.data.hostUser)
+      localStorage.setItem('typeOfUser',"hostUser")
       alert('true') 
       setUser(res.data);
-      console.log(res.data.hostUser._id)
+      console.log(res.data.hostUser) 
       navigate('/HostProf/'+res.data.hostUser._id)
     }
    

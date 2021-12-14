@@ -17,6 +17,7 @@ function ViewHomes() {
 
     let decodedData ;
     const storedToken = localStorage.getItem("token");
+    const typeOfUser = localStorage.getItem("typeOfUser");
     if (storedToken){
       decodedData = jwt_decode(storedToken, { payload: true });
        console.log(decodedData);
@@ -28,9 +29,13 @@ function ViewHomes() {
           setHomes(res.data)
         });
       }, []);
+
     return (
         <div>
-     <div className="sidbar "  onClick={()=>{navigate("/GuestProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/>
+<div>
+{ typeOfUser=="guestUser"?<div className="sidbar "  onClick={()=>{navigate("/GuestProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/></div>:
+                              <div className="sidbar "  onClick={()=>{navigate("/HostProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/></div>
+    }
      
      <Nav />
       </div>
