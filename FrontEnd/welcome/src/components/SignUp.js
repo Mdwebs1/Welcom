@@ -2,6 +2,7 @@ import axios from 'axios'
 import React from 'react'
 import {useState} from "react"
 import {useNavigate } from "react-router-dom"
+import vedio from '../vedio/vedio.mp4'
 
 function SignUp() {
     const [guest, setGuest] = useState();
@@ -55,7 +56,8 @@ function SignUp() {
    
  
     return (
-        <div>
+        <div className="signUp">
+           <video  loop muted src={vedio} autoplay="true" type="video/mp4" ></video>
                    <fieldset id="fld">
                    <legend>Sign Up</legend>
                    <label for="user"></label>

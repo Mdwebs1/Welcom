@@ -6,8 +6,7 @@ import Nav from './Nav'
 import jwt_decode from "jwt-decode"
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import {Link} from 'react-router-dom'
-import coffe from '../vedio/coffe.mp4'
-import coffee from '../vedio/coffee.MP4'
+
 
 function ViewHomes() {
     const [Homes ,setHomes] = useState([])
@@ -31,7 +30,7 @@ function ViewHomes() {
       }, []);
     return (
         <div>
-          <video loop muted src={coffee} autoplay="true" type="video/mp4" ></video>
+    
         <div className="container">
                     {Homes.map((host) => {
                           return(

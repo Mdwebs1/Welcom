@@ -3,6 +3,7 @@ import {  useState } from "react";
 import axios from "axios"
 import {useNavigate } from "react-router-dom"
 import jwt from "jwt-decode"
+import vedio from '../vedio/vedio.mp4'
 
 function LogIn() {
   const [password,setPassword] = useState()
@@ -59,8 +60,8 @@ const userSignin=(e)=> {
     
     }
     return (
-        <div>
-            
+        <div className="signUp">
+             <video  loop muted src={vedio} autoplay="true" type="video/mp4" ></video>
                    <fieldset id="fld">
                    <legend>Sign In</legend>
                    <label for="email"></label>

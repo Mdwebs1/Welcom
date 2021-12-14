@@ -5,7 +5,7 @@ import jwt_decode from "jwt-decode"
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css'
 import Nav from './Nav'
-
+import {useNavigate} from "react-router-dom"
 
 function HostProf() {
     const [users ,setUser] = useState()
@@ -29,6 +29,7 @@ function HostProf() {
     let params = useParams();
     console.log(params.id)
 
+    const navigate = useNavigate()
     let decodedData ;
     const storedToken = localStorage.getItem("token");
     if (storedToken){
@@ -100,15 +101,16 @@ function HostProf() {
   const ubdate =(e,home)=>{
     e.preventDefault()
     setSaveId(home._id)
-    setInformations(home.informations)
-    setHomeImage(home.homeImage)
-    setPhoneNumber(home.phoneNumber)
+    // setInformations(home.informations)
+    // setHomeImage(home.homeImage)
+    // setPhoneNumber(home.phoneNumber)
     setEnableEdit(true)
 
-
   }
+
   const saveData =(e)=>{
     e.preventDefault()
+    console.log("savvvv")
     const obj = {informations:informations,phoneNumber:phoneNumber,homeImage:homeImage,id:saveId};
     axios.put("http://localhost:8080/hostRouter/updateHomes/", obj).then((response) =>{
         setHomes(response.data.data)
@@ -181,7 +183,9 @@ const booking =()=>{
                      <div key={index}>
                     <h3 className="hostProf">{home.phoneNumber}</h3>
                     <h3 className="hostProf">{home.informations}</h3>
-                    <img src={home.image} />
+                    <a class="button"  onClick={(e)=>{
+                window.location.href = "#popup2" 
+                ubdate(e,home)}} ><img src={home.image} /></a>     
                     {(function(){
                       console.log("function")
   if(decodedData!=undefined){
@@ -191,17 +195,22 @@ const booking =()=>{
       return (
 
         <>
-       <div id="popup1" class="overlay">
-	<div class="popup2">
+       {/* <div id="popup3" class="overlay">
+	<div class="popup3">
 
 		<a class="close" href="#">&times;</a>
 		<div class="content1">
+    <form>
+      <input onChange={(e) =>setInformations(e.target.value) }></input>
+      <input onChange={(e) =>setHomeImage(e.target.value) }></input>
+      <input onChange={(e) =>setPhoneNumber(e.target.value) }></input>
+    </form>
 		 <button onClick={()=>{deleteHome(home._id)}} className="btn-home">Delete</button>
                     <button  onClick={(e)=>ubdate(e,home)} className="btn-home">ubdate</button>
-                    <button  className="hostProf">Post</button> 
+                    {/* <button  className="hostProf">Post</button>  
 		</div>
 	</div>
-</div>
+</div> */}
               </>     
                     )
                     }}})()}         
@@ -231,14 +240,14 @@ const booking =()=>{
 
 		<a class="close" href="#">&times;</a>
 		<div class="content">
-		                   <form >
+		                   <form  onSubmit={(e) => postMethod(e)}>
         <input placeholder=" Home Image" onChange={(e) =>{setHomeImage(e.target.value)}}/>
         <br />
         <input placeholder="phoneNumber"  onChange={(e) =>{setPhoneNumber(e.target.value)}}/>
         <br />
         <textarea placeholder="description" onChange={(e) =>{setInformations(e.target.value)}}/>
         <br />
-        <button className="btn-home">Post</button>
+         <button className="btn-home">Post</button> 
         {enableEdit?<button onClick={(e) =>saveData(e)} className="btn-home">save</button>:<></>}
       </form>
 		</div>
@@ -256,7 +265,7 @@ const booking =()=>{
 
 		<a class="close" href="#">&times;</a>
 		<div class="content">
-			     <form className="fullcard-container" onSubmit={(e) => postMethod(e)}>
+			     <form >
         <input placeholder=" UserName" value={name} onChange={(e) =>{setName(e.target.value)}}/>
         <br />
         <input placeholder="Name" value={userName} onChange={(e) =>{setUserName(e.target.value)}}/>
