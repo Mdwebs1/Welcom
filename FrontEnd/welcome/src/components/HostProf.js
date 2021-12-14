@@ -191,9 +191,17 @@ const booking =()=>{
       return (
 
         <>
-         <button onClick={()=>{deleteHome(home._id)}}>Delete</button>
-                    <button  onClick={(e)=>ubdate(e,home)}>ubdate</button>
+       <div id="popup1" class="overlay">
+	<div class="popup2">
+
+		<a class="close" href="#">&times;</a>
+		<div class="content1">
+		 <button onClick={()=>{deleteHome(home._id)}} className="btn-home">Delete</button>
+                    <button  onClick={(e)=>ubdate(e,home)} className="btn-home">ubdate</button>
                     <button  className="hostProf">Post</button> 
+		</div>
+	</div>
+</div>
               </>     
                     )
                     }}})()}         
@@ -214,25 +222,41 @@ const booking =()=>{
       return (
 
         <>
-    
-                    <form >
+
+        <div class="box">
+	<a class="button" href="#popup2">Post</a>
+</div>
+  <div id="popup2" class="overlay">
+	<div class="popupHost">
+
+		<a class="close" href="#">&times;</a>
+		<div class="content">
+		                   <form >
         <input placeholder=" Home Image" onChange={(e) =>{setHomeImage(e.target.value)}}/>
         <br />
         <input placeholder="phoneNumber"  onChange={(e) =>{setPhoneNumber(e.target.value)}}/>
         <br />
         <textarea placeholder="description" onChange={(e) =>{setInformations(e.target.value)}}/>
         <br />
-
-
-        <button>Post</button>
-        {enableEdit?<button onClick={(e) =>saveData(e)}>save</button>:<></>}
-        
+        <button className="btn-home">Post</button>
+        {enableEdit?<button onClick={(e) =>saveData(e)} className="btn-home">save</button>:<></>}
       </form>
-       <button onClick={(e) =>changeProfile(e)}>updateProfile</button>
-       {enableProfile?
-       
-      
-       <form className="fullcard-container" onSubmit={(e) => postMethod(e)}>
+		</div>
+	</div>
+</div>
+
+      {/* update profile */}
+      <div class="box">
+	<a class="button" href="#popup1">update profile</a>
+  
+</div>
+
+<div id="popup1" class="overlay">
+	<div class="popup">
+
+		<a class="close" href="#">&times;</a>
+		<div class="content">
+			     <form className="fullcard-container" onSubmit={(e) => postMethod(e)}>
         <input placeholder=" UserName" value={name} onChange={(e) =>{setName(e.target.value)}}/>
         <br />
         <input placeholder="Name" value={userName} onChange={(e) =>{setUserName(e.target.value)}}/>
@@ -243,9 +267,11 @@ const booking =()=>{
         <br />
         <input placeholder="UserImage" value={userImage} onChange={(e) =>{setUserImage(e.target.value)}}/>
         <br />
-        <button onClick={(e) =>updateProfile(e)}>updateProfile</button>
+        <button onClick={(e) =>updateProfile(e)} className="btn-home">updateProfile</button>
         </form>
-       :<></>}        
+		</div>
+	</div>
+</div>
         </>
       )
     }
@@ -270,7 +296,7 @@ console.log(decodedData.id)
       
   </DatePicker>
  
-  <button  onClick={()=>{booking()}}>booking</button>
+  <button  onClick={()=>{booking()}} className="btn-home">booking</button>
 
 
   {startDate?.map((data ,index) => (
@@ -284,7 +310,7 @@ console.log(decodedData.id)
          
   ))
   }
-     
+{/*      
   <div class="wrap">
         <div class="house__holder">
             <div class="sun"></div>
@@ -343,7 +369,7 @@ console.log(decodedData.id)
                 </div>
             </div>
         </div>
-    </div>
+    </div> */}
     </div> 
         </div>
         </div>
