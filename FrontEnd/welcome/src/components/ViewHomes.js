@@ -30,7 +30,10 @@ function ViewHomes() {
       }, []);
     return (
         <div>
-    
+     <div className="sidbar "  onClick={()=>{navigate("/GuestProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/>
+     
+     <Nav />
+      </div>
         <div className="container">
                     {Homes.map((host) => {
                           return(
@@ -58,10 +61,7 @@ function ViewHomes() {
   
         </div>
       
-        <div className="sidbar"  onClick={()=>{navigate("/GuestProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/>
-     
-        <Nav />
-         </div>
+       
        
 
        

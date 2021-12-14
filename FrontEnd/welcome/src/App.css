@@ -69,15 +69,16 @@ ul{
 } 
 /* sidbar */
 .sidbar{
-  position: absolute;
-  left: 85%;
-  height: 40px;
-  cursor: pointer;
+ display: flex;
+ cursor: pointer;
+ margin: 10px;
 
 }
+
 .sidbarNav{
   margin-right: 50px;
   color: #000;
+  
 }
 
 

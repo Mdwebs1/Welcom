@@ -57,7 +57,8 @@ function SignUp() {
  
     return (
         <div className="signUp">
-           <video  loop muted src={vedio} autoplay="true" type="video/mp4" ></video>
+        <img src="https://i.pinimg.com/564x/f3/ac/ed/f3aced989a07f2f345d6d53dde818784.jpg"></img>
+           {/* <video  loop muted src={vedio} autoplay="true" type="video/mp4" ></video> */}
                    <fieldset id="fld">
                    <legend>Sign Up</legend>
                    <label for="user"></label>
