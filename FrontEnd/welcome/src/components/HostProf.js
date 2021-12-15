@@ -6,6 +6,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Nav from "./Nav";
 import { useNavigate } from "react-router-dom";
+import '../host.css'
+import Sdo from './Sdo'
 
 function HostProf() {
   const [users, setUser] = useState();
@@ -179,14 +181,18 @@ function HostProf() {
   //       if(decodedData.id==id){
   return (
     <div>
-      <Nav />
-      <div className="profile">
-        <div>
-          <div>
+       <Nav />
+    
+    <div style={{display:'flex'}} >
+     
+      {/* <div className="profile"> */}
+       <Sdo/>
+     
+          <div className=" containerHome container">
             <h1 className="hostProf">البيت بيتك والعين اوسع لك من المكان </h1>
 
-            <h1 className="hostProf">userName :{users.userName}</h1>
-            <h1 className="hostProf">name :{users.name}</h1>
+            {/* <h1 className="hostIn">userName :{users.userName}</h1> */}
+            <h1 className="hostIn">{users.name}:صاحب المنزل </h1>
 
             {/* form for more information */}
             {homes?.map((home, index) => {
@@ -398,88 +404,31 @@ function HostProf() {
               timeFormat="HH:mm"
               timeIntervals={15}
               timeCaption="time"
+              className="datePicker"
             ></DatePicker>
 
             <button
               onClick={() => {
                 booking();
               }}
-              className="btn-home"
-            >
+              className="btn-home">
               booking
             </button>
 
             {startDate?.map((data, index) => (
-              <div key={index}>
+              <div key={index}  >
                 <h3>{data.date}</h3>
                 <h3>Guest :{data.guest.userName}</h3>
                 <h3>Host :{data.host.name}</h3>
                 <img src={data.host.hostImage}></img>
               </div>
             ))}
-            {/*      
-  <div class="wrap">
-        <div class="house__holder">
-            <div class="sun"></div>
-            <div class="cloud__holder">
-                <div class="cloud"></div>
-                <div class="cloud cloud--small"></div>
-            </div>
-            <div class="cloud__holder cloud__holder--reverse">
-                <div class="cloud"></div>
-                <div class="cloud cloud--small"></div>
-            </div>
-            <div class="house__base">
-                <div class="house__side house__garage">
-                    <div class="house__garage-door">
-                        <span class="shadow"></span>
-                        <span class="shadow shadow1"></span>
-                        <span class="shadow shadow2"></span>
-                        <span class="shadow shadow3"></span>
-                        <span class="house__handle"></span>
-                    </div>
-                </div>
-                <div class="house__side house__front">
-                    <div class="house__roof">
-                        <div class="house__chimney">
-                            <span class="house__chimney-smoke"></span>
-                            <span class="house__chimney-smoke"></span>
-                            <span class="house__chimney-smoke"></span>
-                            <span class="house__chimney-smoke"></span>
-                            <span class="house__chimney-smoke"></span>
-                        </div>
-                        <span class="house__roof-window"></span>
-                        <span class="house__roof-shadow"></span>
-                        <span class="house__roof-shadow house__roof-shadow--sec"></span>
-                    </div>
-                    <div class="house__door">
-                        <span class="house__eye-thing"></span>
-                        <span class="house__handle house__door-handle"></span>
-                        <span class="house__mail-box"></span>
-                    </div>
-                    <div class="house__window house__front-window">
-                        <span class="house__shine"></span>
-                        <span class="house__window-brick"></span>
-                    </div>
-                </div>
-                <div class="house__side house__back">
-                    <div class="house__roof-top">
-                        <span class="house__shine house__shine--roof"></span>
-                    </div>
-                    <div class="house__window house__back-window">
-                        <span class="house__shine"></span>
-                        <span class="house__window-brick house__window-brick--sec"></span>
-                    </div>
-                    <div class="house__window house__back-window--sec">
-                        <span class="house__shine"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> */}
-          </div>
-        </div>
-      </div>
+    
+          </div> 
+        
+      {/* </div> */}
+
+    </div>
     </div>
   );
 }

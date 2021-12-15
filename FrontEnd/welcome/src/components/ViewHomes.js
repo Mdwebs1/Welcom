@@ -32,14 +32,14 @@ function ViewHomes() {
 
     return (
         <div>
-<div>
-{ typeOfUser=="guestUser"?<div className="sidbar "  onClick={()=>{navigate("/GuestProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/></div>:
-                              <div className="sidbar "  onClick={()=>{navigate("/HostProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/></div>
+<div className="sidbar ">
+{ typeOfUser=="guestUser"?<div   onClick={()=>{navigate("/GuestProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/></div>:
+                              <div onClick={()=>{navigate("/HostProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/></div>
     }
      
      <Nav />
       </div>
-        <div className="container">
+        <div className="containerHome">
                     {Homes.map((host) => {
                           return(
                             <div >

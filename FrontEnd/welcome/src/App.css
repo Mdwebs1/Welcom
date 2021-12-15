@@ -62,11 +62,11 @@ a{
   text-decoration: none;
   color:white;
 }
-ul{
+ ul{
   margin: 0%;
   padding: 0%;
   list-style: none;
-} 
+}  
 /* sidbar */
 .sidbar{
  display: flex;
@@ -76,7 +76,7 @@ ul{
 }
 
 .sidbarNav{
-  margin-right: 50px;
+  margin: 20px;
   color: #000;
   
 }
@@ -127,6 +127,7 @@ h2::before {
   gap: 10px;
   justify-content: center;
   align-items: center;
+
 }
 .btn-home{
   border-radius: 5px;
@@ -134,6 +135,8 @@ h2::before {
   background-color: rgb(211, 79, 79);
   cursor: pointer;
   border: none;
+  text-align: center;
+
 
 }
 /* sign up css */
@@ -205,7 +208,7 @@ video{
   height: 100%;
   
 }
-.container{
+.containerHome{
   margin:20px;
   display:grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -264,36 +267,9 @@ video{
  margin-top:20px;
 
 }  
-/*hostProfile*/
- /* .hostBackground{
-   /* background-image: url('./img/54e84504-8c5a-4d79-b048-883183664b88.jfif');
-  background-size: cover;
-  background-repeat:no-repeat; */
-  /* background-color: #61dafb; */
- */
-/* .hostProf{
-  display: 'flex';
-  justify-Content: 'center';
-  gap: '100px';
-  width: 30vw;
-  background-color: #f9fafa;
-  border-radius: 5px;
-  padding: 20px;
-  
-} */
-.hostProf{
-  margin-left: 50vw;
-}
-.profile{
-  
-  height: 92vh;
-  display: flex; 
-  align-items:center;
-  padding: 10px 40px;
-  /* background-image: url('./img/54e84504-8c5a-4d79-b048-883183664b88.jfif');
-  background-repeat:no-repeat; */
 
-}
+
+
 .wrap {
   
   background-color: var(--light-orange);
