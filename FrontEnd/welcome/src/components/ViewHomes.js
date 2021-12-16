@@ -33,10 +33,19 @@ function ViewHomes() {
     return (
         <div>
 <div className="sidbar ">
-{ typeOfUser=="guestUser"?<div   onClick={()=>{navigate("/GuestProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/></div>:
-                              <div onClick={()=>{navigate("/HostProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/></div>
-    }
-     
+{(function () {
+             if(typeOfUser!=undefined) {
+               if( typeOfUser=="guestUser"){
+                 return (<div onClick={()=>{navigate("/GuestProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/></div>)
+               }if(typeOfUser=="hostUser"){
+                 return(<div onClick={()=>{navigate("/HostProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/></div>)
+                
+               }
+             }      
+                  })()}
+{/* { typeOfUser=="guestUser"?<div onClick={()=>{navigate("/GuestProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/></div>:
+                          <div onClick={()=>{navigate("/HostProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/></div>}
+      */}
      <Nav />
       </div>
         <div className="containerHome">

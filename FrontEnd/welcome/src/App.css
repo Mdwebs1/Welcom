@@ -127,17 +127,26 @@ h2::before {
   gap: 10px;
   justify-content: center;
   align-items: center;
+ 
+
 
 }
 .btn-home{
   border-radius: 5px;
-  padding:10px;
-  background-color: rgb(211, 79, 79);
+  padding:11px;
+  background-color: rgba(255, 82, 145, 1);
   cursor: pointer;
   border: none;
   text-align: center;
+  color:white;
+  margin-top:5px;
+ 
 
-
+}
+.btn-home:hover{
+  background: rgba(6, 141, 126, 1);
+  width:90px;
+  height: 50px;
 }
 /* sign up css */
 
@@ -703,31 +712,42 @@ video{
 
 
 .box {
-display: flex;
+display: grid;
+
 }
 
 .button {
-
+  margin:5px;
   border-radius: 5px;
   padding:10px;
-  background-color: rgb(211, 79, 79);
+  background-color:  rgba(255, 82, 145, 1);;
   cursor: pointer;
   border: none;
+
+
   
+}
+.button:hover{
+  background: rgba(6, 141, 126, 1);
+  width:90px;
+  height: 50px;
 }
 .button1{
   border-radius: 5px;
   padding:10px;
-  background-color: rgb(211, 79, 79);
+  background-color:  rgba(255, 82, 145, 1);;
   cursor: pointer;
   border: none;
   margin-left: 50vw;
   display: flex;
 }
-.button:hover {
-  background: #e66d44;
-}
 
+
+.button1:hover {
+  background: rgba(6, 141, 126, 1);
+  width:90px;
+  height: 50px;
+}
 .overlay {
   position: fixed;
   top: 0;

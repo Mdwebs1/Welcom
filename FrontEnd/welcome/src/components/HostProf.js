@@ -182,7 +182,22 @@ function HostProf() {
   return (
     <div>
        <Nav />
-    
+       <a class="button" href="#popup2">
+                          Add home
+                        </a>
+                        <a class="button" href="#popup1" onClick={(e) => {
+                      window.location.href = "#popup1";
+                      changeProfile(e);
+                    }}>
+                          update profile
+                        </a>
+                        <button
+              onClick={() => {
+                booking();
+              }}
+              className="btn-home">
+              booking
+            </button>
     <div style={{display:'flex'}} >
      
       {/* <div className="profile"> */}
@@ -198,26 +213,26 @@ function HostProf() {
             {homes?.map((home, index) => {
               return (
                 <div key={index}>
-                  <h3 className="hostProf">{home.phoneNumber}</h3>
-                  <h3 className="hostProf">{home.informations}</h3>
+                  <h3 className="hostProf">{home.phoneNumber}:للتواصل</h3>
+                  <h3 className="hostProf">{home.informations}: وصف المنزل</h3>
                   <img src={home.image} />
-                  <a
-                    class="button"
-                    onClick={(e) => {
-                      window.location.href = "#popup2";
-                      ubdate(e, home);
-                    }}
-                  >
-                    Edit
-                  </a>
-                  <button
-                    onClick={() => {
-                      deleteHome(home._id);
-                    }}
-                    className="btn-home"
-                  >
-                    Delete
-                  </button>
+                  {(function () {
+              console.log("function");
+              if (decodedData != undefined) {
+                console.log("decoder");
+                if (decodedData.id === id) {
+                  console.log("helllo");
+                  return (
+                    <>
+                   <br></br> <button onClick={() => { deleteHome(home._id); }} className="btn-home">Delete</button>
+                    <a class="button" onClick={(e) => { window.location.href = "#popup2";ubdate(e, home);}}> Edit </a>
+                    </>
+
+)}}})()}
+
+
+                 
+                
                   {(function () {
                     console.log("function");
                     if (decodedData != undefined) {
@@ -260,9 +275,7 @@ function HostProf() {
                   return (
                     <>
                       <div class="box">
-                        <a class="button" href="#popup2">
-                          Add home
-                        </a>
+                      
                       </div>
                       <div id="popup2" class="overlay">
                         <div class="popupHost">
@@ -279,36 +292,18 @@ function HostProf() {
                                 }}
                               />
                               <br />
-                              <input
-                                placeholder="phoneNumber"
-                                value={phoneNumber}
-                                onChange={(e) => {
-                                  setPhoneNumber(e.target.value);
-                                }}
-                              />
+                              <input placeholder="phoneNumber"value={phoneNumber}onChange={(e) => { setPhoneNumber(e.target.value) }}/>
                               <br />
-                              <textarea
-                                placeholder="description"
-                                value={informations}
-                                onChange={(e) => {
-                                  setInformations(e.target.value);
-                                }}
-                              />
+                              <textarea placeholder="description" value={informations}  onChange={(e) => {setInformations(e.target.value);}}/>
                               <br />
-                              {enablePost ? (
-                                <button className="btn-home">Post</button>
-                              ) : (
-                                <></>
-                              )}
+                            
+                              {enablePost ? (<button className="btn-home">Post</button>) : (<></>   )}
 
                               {enableEdit ? (
                                 <a href="#">
                                   <button
                                     onClick={(e) => saveData(e)}
-                                    className="btn-home"
-                                  >
-                                    save
-                                  </button>
+                                    className="btn-home">save</button>
                                 </a>
                               ) : (
                                 <></>
@@ -320,12 +315,7 @@ function HostProf() {
 
                       {/* update profile */}
                       <div class="box">
-                        <a class="button" href="#popup1" onClick={(e) => {
-                      window.location.href = "#popup1";
-                      changeProfile(e);
-                    }}>
-                          update profile
-                        </a>
+                  
                       </div>
 
                       <div id="popup1" class="overlay">
@@ -407,13 +397,7 @@ function HostProf() {
               className="datePicker"
             ></DatePicker>
 
-            <button
-              onClick={() => {
-                booking();
-              }}
-              className="btn-home">
-              booking
-            </button>
+       
 
             {startDate?.map((data, index) => (
               <div key={index}  >
