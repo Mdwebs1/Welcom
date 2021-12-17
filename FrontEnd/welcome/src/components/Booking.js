@@ -2,6 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import  {useEffect , useState} from 'react'
 import jwt_decode from "jwt-decode"
+import Nav from "./Nav";
+
 
 function Booking() {
     const [allBookinh ,setAllBookinh] = useState([])
@@ -58,10 +60,16 @@ function Booking() {
             )
         }
     return (
-        <>
+        <div className="booking">
+       
+<div className="bookingTest">
+          <Nav />
+<div >
+<h1 className='h1'>طلبات الإقامة</h1>
+
         {allBookinh.map((booking)=>{
             return(
-                <div>
+                <div >
                 {booking.guest.name}
                 {booking.bookingStatues}
                 
@@ -71,7 +79,9 @@ function Booking() {
            
             )
         })}
-        </>  
+        </div>  
+        </div>
+        </div>
   
     )
 }

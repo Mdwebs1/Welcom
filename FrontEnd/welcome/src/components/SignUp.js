@@ -26,6 +26,7 @@ function SignUp() {
                     }if(res.data.guestUser){
                         const token = res.data.token;
                         localStorage.setItem('token',token)
+                        localStorage.setItem('typeOfUser',"guestUser")
                         console.log('guest')
                         alert(`أرررحب  ${name}`) 
 
@@ -44,6 +45,7 @@ function SignUp() {
                     else if(res.data.hostUser){
                         const token = res.data.token;
                         localStorage.setItem('token',token)
+                        localStorage.setItem('typeOfUser',"hostUser")
     
                         alert(`أرررحب  ${res.data.hostUser.name}`) 
                     }

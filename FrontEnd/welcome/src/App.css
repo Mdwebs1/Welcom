@@ -61,6 +61,7 @@
 a{
   text-decoration: none;
   color:white;
+
 }
  ul{
   margin: 0%;
@@ -68,18 +69,20 @@ a{
   list-style: none;
 }  
 /* sidbar */
-.sidbar{
+ .sidbar{
  display: flex;
  cursor: pointer;
- margin: 10px;
+ margin:14px;
+
+ 
 
 }
-
+/*
 .sidbarNav{
-  margin: 20px;
+ padding:10px;
   color: #000;
   
-}
+} */
 
 
 
@@ -723,6 +726,7 @@ display: grid;
   background-color:  rgba(255, 82, 145, 1);;
   cursor: pointer;
   border: none;
+ 
 
 
   
@@ -828,4 +832,13 @@ display: grid;
 .popupHost .content {
   max-height: 30%;
   overflow: auto;
+}
+.booking{
+ background-color:rgb(222, 241, 222);
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.h1{
+  text-align: center;
 }

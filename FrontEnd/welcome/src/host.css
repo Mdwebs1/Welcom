@@ -1,20 +1,5 @@
-/* hostProfile */
- /* .hostBackground{
-   /* background-image: url('./img/54e84504-8c5a-4d79-b048-883183664b88.jfif');
-  background-size: cover;
-  background-repeat:no-repeat; */
-  /* background-color: #61dafb; */
-  */
-  /* .hostProf{
-    display: 'flex';
-    justify-Content: 'center';
-    gap: '100px';
-    width: 30vw;
-    background-color: #f9fafa;
-    border-radius: 5px;
-    padding: 20px;
-    
-  } */
+@import url('https://fonts.googleapis.com/css2?family=Fruktur&family=Pacifico&family=Tajawal:wght@500&display=swap');
+  
 .hostApp{
     background-color: aqua;
 }
@@ -45,13 +30,47 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2px;
+   margin:0%;
  
   }
+
+  .hostProfText{
+    text-align: center;
+
+  }
   .hostIn{
-   margin-right: 50px;
-    /* border: 1px solid;
-    box-shadow: 5px 5px #467a92; */
+    text-align: center;
+    margin-bottom: 40px;  
+  }
+  .homeInfo{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-gap: 1px;
+  margin:5%;
+
+  }
+  .homeInfoImg{
+    width: 30vw;
+    border-radius: 5%;
+  }
+  .homeInfoDescription{
+  width: 50vw;
+   margin-top: 50px; 
+  }
+  .restor{
+    display:flex;
+    margin-top:10%;
+    margin-left: 30%;
+  
+  }
+  .btn-restor{
+    margin-right: 5px;
+    width: 10vw;
+    border-radius: 5px;
+    padding:5px;
+    background-color:  rgba(255, 82, 145, 1);;
+    cursor: pointer;
+    border: none;
   }
   .profile{
     border: 1px solid;
@@ -63,6 +82,17 @@
     background-repeat:no-repeat; */
   
   }
+
+  .btn-homeUpdate{
+    border-radius: 5px;
+    padding:15px;
+    background-color:  rgba(255, 82, 145, 1);;
+    cursor: pointer;
+    border: none; 
+    margin-left: 5px;
+    margin-bottom: 20px;
+    color: white;
+  }
  
   .datePicker{
       margin-left:25%;
@@ -72,3 +102,8 @@
     margin-right: 50px;
      
   }
+h1 ,h3{
+  font-family: 'Fruktur', cursive;
+font-family: 'Pacifico', cursive;
+font-family: 'Tajawal', sans-serif;
+}

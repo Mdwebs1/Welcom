@@ -52,11 +52,12 @@ hostSchema.pre('save',async function ( next) {
 hostSchema.statics.login= async function (email,password){
     
     const host= await this.findOne({ email: email});
+    console.log(host) 
     if(host){
        const hostes= await bcrypt.compare(password,host.password)
        if(hostes){
            return host
-       }
+        }
        throw Error('incorect password')
     }
     throw Error('incorect email')

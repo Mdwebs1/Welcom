@@ -27,6 +27,8 @@ function HostProf() {
   const [enablePost, setEnablePost] = useState(true);
   const [selectedDate, setSelectedDate] = useState(null);
   const [startDate, setStartDate] = useState();
+  const [typeOfUser, setTypeOfUser] = useState();
+
   let { id } = useParams();
   let [homes, setHomes] = useState([]);
   let params = useParams();
@@ -44,7 +46,9 @@ function HostProf() {
       localStorage.removeItem("token");
     }
   }
-
+  useEffect(() => {
+    setTypeOfUser(localStorage.getItem("typeOfUser"));
+  }, []);
   useEffect(() => {
     axios.get("http://localhost:8080/hostRouter/" + params.id).then((res) => {
       console.log(res.data[0]);
@@ -182,89 +186,41 @@ function HostProf() {
   return (
     <div>
        <Nav />
-       <a class="button" href="#popup2">
-                          Add home
+       {typeOfUser !== 'guestUser' ? (
+<>
+        <a className="button" href="#popup2">
+                         إضافة منزل
                         </a>
                         <a class="button" href="#popup1" onClick={(e) => {
                       window.location.href = "#popup1";
                       changeProfile(e);
                     }}>
-                          update profile
+                          تحديث معلوماتك الشخصية
                         </a>
-                        <button
-              onClick={() => {
-                booking();
-              }}
-              className="btn-home">
-              booking
-            </button>
+                
+            <button className="button" onClick={() => {navigate(`/Booking/${decodedData.id}`)}}><a href="components/Booking.js">طلبات الحجز</a> </button>
+            </>
+       ): <></>}
+      
     <div style={{display:'flex'}} >
      
-      {/* <div className="profile"> */}
+   
        <Sdo/>
      
           <div className=" containerHome container">
-            <h1 className="hostProf">البيت بيتك والعين اوسع لك من المكان </h1>
-
+          <br></br>
+          <br></br>
+          <br></br>
+            <h1 className="hostProfText">البيت بيتك والعين اوسع لك من المكان </h1>
+           
+          <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
             {/* <h1 className="hostIn">userName :{users.userName}</h1> */}
-            <h1 className="hostIn">{users.name}:صاحب المنزل </h1>
 
+            
+
+           
             {/* form for more information */}
-            {homes?.map((home, index) => {
-              return (
-                <div key={index}>
-                  <h3 className="hostProf">{home.phoneNumber}:للتواصل</h3>
-                  <h3 className="hostProf">{home.informations}: وصف المنزل</h3>
-                  <img src={home.image} />
-                  {(function () {
-              console.log("function");
-              if (decodedData != undefined) {
-                console.log("decoder");
-                if (decodedData.id === id) {
-                  console.log("helllo");
-                  return (
-                    <>
-                   <br></br> <button onClick={() => { deleteHome(home._id); }} className="btn-home">Delete</button>
-                    <a class="button" onClick={(e) => { window.location.href = "#popup2";ubdate(e, home);}}> Edit </a>
-                    </>
-
-)}}})()}
-
-
-                 
-                
-                  {(function () {
-                    console.log("function");
-                    if (decodedData != undefined) {
-                      console.log("decoder");
-                      if (decodedData.id === id) {
-                        console.log("helllo");
-                        return (
-                          <>
-                            {/* <div id="popup3" class="overlay">
-	<div class="popup3">
-
-		<a class="close" href="#">&times;</a>
-		<div class="content1">
-    <form>
-      <input onChange={(e) =>setInformations(e.target.value) }></input>
-      <input onChange={(e) =>setHomeImage(e.target.value) }></input>
-      <input onChange={(e) =>setPhoneNumber(e.target.value) }></input>
-    </form>
-		 <button onClick={()=>{deleteHome(home._id)}} className="btn-home">Delete</button>
-                    <button  onClick={(e)=>ubdate(e,home)} className="btn-home">ubdate</button>
-                    {/* <button  className="hostProf">Post</button>  
-		</div>
-	</div>
-</div> */}
-                          </>
-                        );
-                      }
-                    }
-                  })()}
-                </div>
-              );
-            })}
+   
 
             {(function () {
               console.log("function");
@@ -384,26 +340,15 @@ function HostProf() {
               }
             })()}
 
-            <DatePicker
-              selected={selectedDate}
-              onChange={(date) => setSelectedDate(date)}
-              dateFormat="dd/MM/yyyy"
-              minDate={new Date()}
-              isClearable
-              showTimeSelect
-              timeFormat="HH:mm"
-              timeIntervals={15}
-              timeCaption="time"
-              className="datePicker"
-            ></DatePicker>
+        
 
        
 
             {startDate?.map((data, index) => (
               <div key={index}  >
                 <h3>{data.date}</h3>
-                <h3>Guest :{data.guest.userName}</h3>
-                <h3>Host :{data.host.name}</h3>
+                <h3>{data.guest.userName}: الضيف</h3>
+                <h3>{data.host.name}: المستضيف</h3>
                 <img src={data.host.hostImage}></img>
               </div>
             ))}
@@ -413,6 +358,82 @@ function HostProf() {
       {/* </div> */}
 
     </div>
+    <h1 className="hostIn">{users.name} : صاحب المنزل </h1>
+    
+    {homes?.map((home, index) => {
+              return (
+                <div key={index}>
+                <div className="homeInfo">
+               <div > 
+               <img className="homeInfoImg" src={home.image} alt="home image" />
+               </div>
+               <div className="homeInfoDescription">
+                  <h3 className="hostIn">{home.phoneNumber} : للتواصل</h3>
+                  <h3 className="hostIn">{home.informations} : وصف المنزل</h3>
+                <div className="restor">
+                <button onClick={() => {booking();}} className="btn-restor"> تأكيد الحجز </button> 
+             <DatePicker
+              placeholder="اختر موعد القدوم"
+              selected={selectedDate}
+              onChange={(date) => setSelectedDate(date)}
+              dateFormat="dd/MM/yyyy"
+              minDate={new Date()}
+              isClearable
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={15}
+              timeCaption="time"
+             ></DatePicker>
+
+            </div>
+                  </div>
+                 </div>
+                  {(function () {
+              console.log("function");
+              if (decodedData != undefined) {
+                console.log("decoder");
+                if (decodedData.id === id) {
+                  console.log("helllo");
+                  return (
+                    <>
+                   <br></br> <button className="btn-homeUpdate" onClick={() => { deleteHome(home._id); }} >الحذف</button>
+                    <a className="btn-homeUpdate" onClick={(e) => { window.location.href = "#popup2";ubdate(e, home);}}> الإضافة </a>
+                    </>
+
+)}}})()}
+
+                  {(function () {
+                    console.log("function");
+                    if (decodedData != undefined) {
+                      console.log("decoder");
+                      if (decodedData.id === id) {
+                        console.log("helllo");
+                        return (
+                          <>
+                            {/* <div id="popup3" class="overlay">
+	<div class="popup3">
+
+		<a class="close" href="#">&times;</a>
+		<div class="content1">
+    <form>
+      <input onChange={(e) =>setInformations(e.target.value) }></input>
+      <input onChange={(e) =>setHomeImage(e.target.value) }></input>
+      <input onChange={(e) =>setPhoneNumber(e.target.value) }></input>
+    </form>
+		 <button onClick={()=>{deleteHome(home._id)}} className="btn-home">Delete</button>
+                    <button  onClick={(e)=>ubdate(e,home)} className="btn-home">ubdate</button>
+                    {/* <button  className="hostProf">Post</button>  
+		</div>
+	</div>
+</div> */}
+                          </>
+                        );
+                      }
+                    }
+                  })()}
+                </div>
+              );
+            })}
     </div>
   );
 }

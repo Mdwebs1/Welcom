@@ -61,8 +61,8 @@ function GuestProf() {
 
     <div>
     
-            <h1 className="guestProg"> userName : {users.userName}</h1>
-            <h1 className="guestProg"> name : {users.name}</h1>
+            <h1 className="guestProg"> {users.userName} : اليوزر</h1>
+            <h1 className="guestProg"> {users.name}: الأسم</h1>
             
 
              {allBookinh.map((booking)=>{
@@ -75,8 +75,8 @@ function GuestProf() {
                         return(
                             <div>
                                 <p>طلبك في الإنتظار</p>
-                    <h3 className="guestProg">you booking with :{booking.host.name}</h3>
-                    <h3 className="guestProg">date :{booking.date}</h3>
+                    <h3 className="guestProg">{booking.host.name}: حجزك مع</h3>
+                    <h3 className="guestProg"> {booking.date}: الموعد</h3>
                    
                     <img className="guestProg" src={booking.host.hostImage}></img> 
                             </div>
@@ -89,8 +89,8 @@ function GuestProf() {
                         return(
                             <div>
                                 <p>معليش رفضت طلبك عيال اختي بيزعجونك اشتر راحتك</p>
-                    <h3 className="guestProg">you booking with :{booking.host.name}</h3>
-                    <h3 className="guestProg">date :{booking.date}</h3>
+                    <h3 className="guestProg">{booking.host.name}: حجزك مع</h3>
+                    <h3 className="guestProg">{booking.date}: الموعد</h3>
                    
                     <img className="guestProg" src={booking.host.hostImage}></img> 
                             </div>
@@ -104,8 +104,8 @@ function GuestProf() {
                         return(
                             <div>
                                <p> :) حياك الله ننتظرك بأقرب وقت</p>
-                    <h3 className="guestProg">you booking with :{booking.host.name}</h3>
-                    <h3 className="guestProg">date :{booking.date}</h3>
+                    <h3 className="guestProg">{booking.host.name}: حجزك مع</h3>
+                    <h3 className="guestProg">{booking.date}: الموعد</h3>
                    
                     <img className="guestProg" src={booking.host.hostImage}></img> 
                             </div>

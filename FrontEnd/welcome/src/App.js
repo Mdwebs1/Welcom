@@ -27,7 +27,7 @@ function App() {
         <Route exact path="/LogIn/:id" element={<LogIn />}></Route>
         <Route exact path="/ViewHomes" element={<ViewHomes />}></Route> 
         <Route exact path="/ViewHomes/:hostId" element={<ViewHomes />}></Route> 
-        <Route exact path="/Booking" element={<Booking />}></Route>
+        <Route path="/Booking/:id" element={<Booking />}></Route>
         {/* <Route exact path="/Profile" element={<Profile />}></Route> */}
       
       </Routes>
