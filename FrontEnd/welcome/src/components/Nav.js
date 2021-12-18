@@ -23,7 +23,7 @@ function Nav() {
             </li> 
            
             <li>
-                <a onClick={Logout} className="Logout"> <LogoutIcon/>Logout</a>
+                <a onClick={Logout} className="Logout"> <LogoutIcon sx={{ fontSize: 40, color: '#000' }}/></a>
             </li>
 
           </ul>

@@ -1,3 +1,25 @@
+.container-amirah{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.card-amirah{
+  grid-column-start:2;
+  grid-column-end:3 ;
+  background-color:#98baf8;
+  border-radius: 30px;
+
+}
+.card-item-amirah{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr ;
+}
+.card-title-amirah{
+  grid-column-start:  2;
+  grid-column-end: 3;
+}
+
+/*====================== end code amirah ==============    */
 *{
   margin: 0%;
 }
