@@ -62,6 +62,7 @@ function ViewHomes() {
                   {host.hostImage? <img className='mapImg' src={host.hostImage} ></img>:<></>} 
            </div>
    <div class="title">
+   <br/> <br/> 
       <h4>{host.name}</h4>
           </div>
             </div>

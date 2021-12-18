@@ -1,6 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import HomeIcon from '@mui/icons-material/Home';
+import LogoutIcon from '@mui/icons-material/Logout';
+
 
 const Logout= ()=> {
   localStorage.clear();
@@ -21,7 +23,7 @@ function Nav() {
             </li> 
            
             <li>
-                <a onClick={Logout} className="Logout">Logout</a>
+                <a onClick={Logout} className="Logout"> <LogoutIcon/>Logout</a>
             </li>
 
           </ul>
