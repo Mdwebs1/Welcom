@@ -3,6 +3,8 @@ import React from 'react'
 import {useState} from "react"
 import {useNavigate } from "react-router-dom"
 import vedio from '../vedio/vedio.mp4'
+import jwt_decode from "jwt-decode";
+
 
 function SignUp() {
     const [guest, setGuest] = useState();
@@ -14,6 +16,18 @@ function SignUp() {
     const [email,setEmail] = useState("")
     let navigate = useNavigate()
 
+    
+      let decodedData;
+  const storedToken = localStorage.getItem("token");
+  if (storedToken) {
+    decodedData = jwt_decode(storedToken, { payload: true });
+    console.log(decodedData);
+    let expirationDate = decodedData.exp;
+    var current_time = Date.now() / 1000;
+    if (expirationDate < current_time) {
+      localStorage.removeItem("token");
+    }
+  }
 
     const handleSignUp =()=>{
     
@@ -24,33 +38,36 @@ function SignUp() {
             if(res.data.error){
                 alert('معليش يالطيب بس ترا عندك خطا')
                     }if(res.data.guestUser){
-                        const token = res.data.token;
+                        const token = res.data.guestUser;
                         localStorage.setItem('token',token)
-                        localStorage.setItem('typeOfUser',"guestUser")
+
                         console.log('guest')
                         alert(`أرررحب  ${name}`) 
 
                     }
                     setGuest(res.data.guest)
-                     navigate('/GuestProf/'+res.data.guestUser._id)
+
+                     navigate('/GuestProf/'+decodedData.id)
         })
       
         console.log('guest')
+
     }else if(ckeck === "Host"){
 
         axios.post('http://localhost:8080/hostRouter/signup',{name,userName,email,password}).then((res)=>{
-            if(res.data.errors){
+            if(res.data.error){
                 alert('معليش يالطيب بس ترا عندك خطا')
                     }
-                    else if(res.data.hostUser){
-                        const token = res.data.token;
+                     if(res.data.hostUser){
+                        const token = res.data.hostUser;
                         localStorage.setItem('token',token)
-                        localStorage.setItem('typeOfUser',"hostUser")
-    
-                        alert(`أرررحب  ${res.data.hostUser.name}`) 
+                        
+                        alert(`أرررحب  ${name}`)
+                        // alert(`أرررحب  ${res.data.hostUser.name}`) 
                     }
-                    setHost(res.data)
-                     navigate('/HostProf/'+res.data.hostUser._id)
+                    setHost(res.data.hostUser) 
+
+                     navigate('/HostProf/'+decodedData.id)
         })
         console.log('host')
     }}

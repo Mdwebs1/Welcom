@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from "react";
+
+import React, { useEffect, useRef, useState } from "react"
+import io from "socket.io-client"
+import TextField from "@material-ui/core/TextField"
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import jwt_decode from "jwt-decode";
@@ -28,10 +31,15 @@ function HostProf() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [startDate, setStartDate] = useState();
   const [typeOfUser, setTypeOfUser] = useState();
+  const [ state, setState ] = useState({ message: "", name: "" })
+	const [ chat, setChat ] = useState([])
+
+	const socketRef = useRef()
 
   let { id } = useParams();
   let [homes, setHomes] = useState([]);
   let params = useParams();
+  console.log(id);
   console.log(params.id);
 
   const navigate = useNavigate();
@@ -46,8 +54,41 @@ function HostProf() {
       localStorage.removeItem("token");
     }
   }
+
+  // useEffect(
+	// 	() => {
+	// 		socketRef.current = io.connect("http://localhost:8080")
+	// 		socketRef.current.on("message", ({ name, message }) => {
+	// 			setChat([ ...chat, { name, message } ])
+	// 		})
+	// 		return () => socketRef.current.disconnect()
+	// 	},
+	// 	[ chat ]
+	// )
+
+	// const onTextChange = (e) => {
+	// 	setState({ ...state, [e.target.name]: e.target.value })
+	// }
+
+	// const onMessageSubmit = (e) => {
+	// 	const { name, message } = state
+	// 	socketRef.current.emit("message", { name, message })
+	// 	e.preventDefault()
+	// 	setState({ message: "", name })
+	// }
+
+	// const renderChat = () => {
+	// 	return chat.map(({ name, message }, index) => (
+	// 		<div key={index}>
+	// 			<h3>
+	// 				{name}: <span>{message}</span>
+	// 			</h3>
+	// 		</div>
+	// 	))
+	// }
+
   useEffect(() => {
-    setTypeOfUser(localStorage.getItem("typeOfUser"));
+    setTypeOfUser(decodedData.typeOfUser);
   }, []);
   useEffect(() => {
     axios.get("http://localhost:8080/hostRouter/" + params.id).then((res) => {
@@ -434,6 +475,27 @@ function HostProf() {
                 </div>
               );
             })}
+            {/* <form onSubmit={onMessageSubmit}>
+				<h1>Messenger</h1>
+				<div className="name-field">
+					<TextField name="name" onChange={(e) => onTextChange(e)} value={state.name} label="Name" />
+				</div>
+				<div>
+					<TextField
+						name="message"
+						onChange={(e) => onTextChange(e)}
+						value={state.message}
+						id="outlined-multiline-static"
+						variant="outlined"
+						label="Message"
+					/>
+				</div>
+				<button>Send Message</button>
+			</form>
+			<div className="render-chat">
+			
+				{renderChat()}
+			</div> */}
     </div>
   );
 }

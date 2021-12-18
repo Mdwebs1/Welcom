@@ -2,7 +2,7 @@ import React from 'react'
 import {  useState } from "react";
 import axios from "axios"
 import {useNavigate } from "react-router-dom"
-import jwt from "jwt-decode"
+import jwt_decode from "jwt-decode";
 import vedio from '../vedio/vedio.mp4'
 
 function LogIn() {
@@ -15,6 +15,7 @@ function LogIn() {
 
 const userSignin=(e)=> { 
   if(ckeck==="Guest"){ 
+  console.log("gfgf")
 
      e.preventDefault();
     axios.post("http://localhost:8080/guestRouter/login",{email,password}).then((res) => {
@@ -22,17 +23,24 @@ const userSignin=(e)=> {
    if(res.data.error){
        alert('fals')
            }if(res.data.guestUser){
-               const token = res.data.token;
-               console.log(res.data);
-               const guestSignin = jwt(token)
+               const token = res.data.guestUser;
+               const guestSignin = jwt_decode(token)
                localStorage.setItem('token',token)
-               localStorage.setItem('user',res.data.guestUser)
-               localStorage.setItem('typeOfUser',"guestUser")
 
-               alert('true') 
-               setUser(res.data);
-               console.log(res.data)
-               navigate('/GuestProf/'+res.data.guestUser._id)
+               alert('true')  
+               console.log(token)
+               let decodedData;
+               const storedToken = localStorage.getItem("token");
+               if (storedToken) {
+                 decodedData = jwt_decode(storedToken, { payload: true });
+                 console.log(decodedData);
+                 let expirationDate = decodedData.exp;
+                 var current_time = Date.now() / 1000;
+                 if (expirationDate < current_time) {
+                   localStorage.removeItem("token");
+                 }
+               }
+               navigate('/GuestProf/'+decodedData.id)
            }
    
     })
@@ -40,19 +48,29 @@ const userSignin=(e)=> {
   
     e.preventDefault();
     axios.post("http://localhost:8080/hostRouter/login",{email,password}).then((res)=>{
-      console.log(res);
-    if(res.data.hostUser){
-      const token = res.data.token;
-      console.log(res.data);
+      console.log(res); 
+      if(res.data.error){
+        alert('fals')
+            }if(res.data.hostUser){
+      const token = res.data.hostUser;
+      console.log(res.data.hostUser);
 
-      const hostSignin = jwt(token)
-      localStorage.setItem('token',token)
-      localStorage.setItem('user',res.data.hostUser)
-      localStorage.setItem('typeOfUser',"hostUser")
-      alert('true') 
-      setUser(res.data);
-      console.log(res.data.hostUser) 
-      navigate('/HostProf/'+res.data.hostUser._id)
+      const hostSignin = jwt_decode(token)
+     localStorage.setItem('token',token)
+      alert('true')  
+
+      let decodedData;
+      const storedToken = localStorage.getItem("token");
+      if (storedToken) {
+        decodedData = jwt_decode(storedToken, { payload: true });
+        console.log(decodedData);
+        let expirationDate = decodedData.exp;
+        var current_time = Date.now() / 1000;
+        if (expirationDate < current_time) {
+          localStorage.removeItem("token");
+        }
+      }
+      navigate('/HostProf/'+decodedData.id)
     }
    
     })

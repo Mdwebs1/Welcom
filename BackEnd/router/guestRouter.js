@@ -38,8 +38,9 @@ const handleError = (err)=>{
     return error;
 }
 const maxAge = 3 * 24 * 60 * 60;
-const createToken =(id)=>{
-    return jwt.sign({id}, 'masha aldossari secret',{
+const createToken =(id,email,name,userName)=>{
+  let typeOfUser='guestUser'
+  return jwt.sign({id ,email,name,userName,typeOfUser}, 'masha aldossari secret',{
         expiresIn:maxAge
     });
 }
@@ -70,9 +71,9 @@ router.post("/signup",async (req, res) => {
     try{
       
       const guestUser= await Guest.create({name,userName,email, password})
-      const token =createToken(guestUser._id)
+      const token =createToken(guestUser._id,guestUser.email,guestUser.name,guestUser.userName)
       res.cookie('jwt',token,{httpOnly:true , maxAge: maxAge * 1000})
-      res.status(201).json({guestUser : guestUser,token:token,name : userName})
+      res.status(201).json({guestUser:token})
     }
     catch(err){
       const error = handleError(err)
@@ -88,13 +89,12 @@ router.post("/signup",async (req, res) => {
 //post for guesglogin
 router.post("/login", async(req, res) => {
     const {email, password} = req.body;
-    console.log("llll")
+    console.log("login")
     try{
-  
       const guestUser= await Guest.login(email, password)
-      const token =createToken(guestUser._id)
+      const token =createToken(guestUser._id,guestUser.email,guestUser.name,guestUser.userName)
       res.cookie('jwt',token,{httpOnly:true , maxAge: maxAge * 1000})
-      res.status(200).json({guestUser : guestUser,token:token})
+      res.status(200).json({guestUser:token})
     }
     catch(err){
         const errors = handleError(err);
@@ -136,6 +136,13 @@ router.post("/booking", (req, res) => {
  })
   })
    
+});
+//logout
+
+router.get("/logout", (req, res) => {
+   
+  res.cookie('jwt', '', { maxAge: 1 });
+  res.redirect('/');
 });
 
 module.exports = router;

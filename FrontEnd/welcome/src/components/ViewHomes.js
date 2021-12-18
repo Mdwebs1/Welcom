@@ -35,10 +35,10 @@ function ViewHomes() {
         
 <div className="sidbar ">
 {(function () {
-             if(typeOfUser!==undefined) {
-               if( typeOfUser==="guestUser"){
+             if(decodedData!==undefined) {
+               if( decodedData.typeOfUser==="guestUser"){
                  return (<div onClick={()=>{navigate("/GuestProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/></div>)
-               }if(typeOfUser==="hostUser"){
+               }if(decodedData.typeOfUser==="hostUser"){
                  return(<div onClick={()=>{navigate("/HostProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/></div>)
                 
                }
@@ -59,7 +59,7 @@ function ViewHomes() {
 
            <div class="card" onClick={()=>{navigate("/HostProf/"+host._id)}}>
            <div class="avatar">
-                  {host.hostImage? <img src={host.hostImage} ></img>:<></>} 
+                  {host.hostImage? <img className='mapImg' src={host.hostImage} ></img>:<></>} 
            </div>
    <div class="title">
       <h4>{host.name}</h4>

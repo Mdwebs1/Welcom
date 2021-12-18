@@ -9,6 +9,7 @@ import HostProf from './components/HostProf'
 import Login from './components/LogIn'
 import ViewHomes from './components/ViewHomes'
 import Booking from './components/Booking'
+import Logout from './components/Logout'
 // import Profile from './components/Profile'
 
 
@@ -20,15 +21,16 @@ function App() {
       <Routes>
         
         <Route exact path="/" element={<Home />}></Route>
-        <Route exact path="/SignUp" element={<SignUp />}></Route>
-        <Route exact path="/LogIn" element={<LogIn />}></Route>
-        <Route exact path="/GuestProf/:id" element={<GuestProf />}></Route>
-        <Route exact path="/HostProf/:id" element={<HostProf />}></Route>
-        <Route exact path="/LogIn/:id" element={<LogIn />}></Route>
-        <Route exact path="/ViewHomes" element={<ViewHomes />}></Route> 
-        <Route exact path="/ViewHomes/:hostId" element={<ViewHomes />}></Route> 
+        <Route path="/SignUp" element={<SignUp />}></Route>
+        <Route path="/LogIn" element={<LogIn />}></Route>
+        <Route path="/GuestProf/:id" element={<GuestProf />}></Route>
+        <Route path="/HostProf/:id" element={<HostProf />}></Route>
+        <Route path="/LogIn/:id" element={<LogIn />}></Route>
+        <Route path="/ViewHomes" element={<ViewHomes />}></Route> 
+        <Route path="/ViewHomes/:hostId" element={<ViewHomes />}></Route> 
         <Route path="/Booking/:id" element={<Booking />}></Route>
         {/* <Route exact path="/Profile" element={<Profile />}></Route> */}
+        <Route path="/Logout" element={<Logout />}></Route>
       
       </Routes>
     </div>

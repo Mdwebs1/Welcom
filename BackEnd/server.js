@@ -6,7 +6,8 @@ const cookieParser = require('cookie-parser');
 const guestRouter = require("./router/guestRouter")
 const hostRouter = require("./router/hostRouter")
 const { checkGuest,checkHost } = require('./middleware/guestMiddleware');
-
+const http = require('http').createServer(app)
+const io = require('socket.io')(http) 
 
 app.use(express.json());
 app.use(cookieParser());
@@ -24,6 +25,12 @@ mongoose.connect(uri, {
   useUnifiedTopology: true,
 });
 
+// socket.io
+io.on('connection', socket => {
+  socket.on('message', ({ name, message }) => {
+    io.emit('message', { name, message })
+  })
+})
 
 // cookies
 
