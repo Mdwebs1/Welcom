@@ -36,12 +36,6 @@ guestSchema.post('save', function (doc, next) {
     next()
 })
 
-//fire a function befor doc saved to db
-guestSchema.pre('save',async function ( next) {
- const salt = await bcrypt.genSalt()
- this.password = await bcrypt.hash(this.password, salt)
-    next()
-})
 
 guestSchema.statics.login = async function (email,password){
     

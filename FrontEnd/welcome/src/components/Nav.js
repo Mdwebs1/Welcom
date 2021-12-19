@@ -2,10 +2,12 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import HomeIcon from '@mui/icons-material/Home';
 import LogoutIcon from '@mui/icons-material/Logout';
+import axios from 'axios'
 
 
 const Logout= ()=> {
   localStorage.clear();
+  axios.get("http://localhost:8080/hostRouter/logout")
 }
 
 

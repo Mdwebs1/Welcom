@@ -5,7 +5,7 @@ const Home = require('../schema/homeInfo')
 const Schedule = require('../schema/schedule')
 const jwt = require('jsonwebtoken')
 const validatePhoneNumber = require('validate-phone-number-node-js');
-
+const md5 = require('md5')
 
 
 //handle errors
@@ -109,7 +109,7 @@ router.post("/signup",async (req, res) => {
     const {userName,name,email, password,hostImage} = req.body;
     try{
       
-      const hostUser= await Host.create({userName,name,email, password,hostImage})
+      const hostUser= await Host.create({userName,name,email, password: md5(password),hostImage})
       const token =createToken(hostUser._id,hostUser.email,hostUser.name,hostUser.userName)
       res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
        res.status(201).json({hostUser:token})

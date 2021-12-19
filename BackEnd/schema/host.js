@@ -34,15 +34,8 @@ const hostSchema = new Schema({
 
 
 //fire a function after doc saved to db
-
 hostSchema.post('save', function (doc, next) {
     console.log('new user was created & saved', doc);
-    next()
-})
-
-//fire a function befor doc saved to db
-hostSchema.pre('save',async function ( next) {
- this.password = md5(this.password);
     next()
 })
 
@@ -53,7 +46,7 @@ hostSchema.statics.login = async function (email,password){
     console.log(password, "pppp") 
     if(host){
        const hostes = md5(password) === host.password;
-       console.log("hhh",hostes)
+       console.log("hhh",hostes, password, host.password, md5(password))
        if(hostes){
            return host
         }
