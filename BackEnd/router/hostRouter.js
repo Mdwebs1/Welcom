@@ -93,7 +93,7 @@ router.post("/login", async(req, res) => {
     const token =createToken(hostUser._id,hostUser.email,hostUser.name,hostUser.userName)
     console.log(token)
     res.cookie('jwt',token,{httpOnly:true , maxAge: maxAge * 1000})
-    res.status(200).json({hostUser :token})
+    res.status(200).json({hostUser:token})
   }
   catch(err){
       const errors = handleError(err);
@@ -111,8 +111,8 @@ router.post("/signup",async (req, res) => {
       
       const hostUser= await Host.create({userName,name,email, password,hostImage})
       const token =createToken(hostUser._id,hostUser.email,hostUser.name,hostUser.userName)
-      res.cookie('jwt',token,{httpOnly:true , maxAge: maxAge * 1000})
-      res.status(201).json({hostUser:token})
+      res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+       res.status(201).json({hostUser:token})
     }
     catch(err){
       const error = handleError(err)
@@ -203,6 +203,7 @@ router.put("/updateHomes", (req, res) => {
       await schedule.save()
       const schedules= await Schedule.find({host: req.body.hostID}).populate('host guest','name')
       res.status(200).send(schedules) 
+
      }
             
   })

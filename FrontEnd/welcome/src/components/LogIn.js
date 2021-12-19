@@ -45,7 +45,8 @@ const userSignin=(e)=> {
    
     })
   }else if(ckeck==="Host"){
-  
+    console.log("res"); 
+
     e.preventDefault();
     axios.post("http://localhost:8080/hostRouter/login",{email,password}).then((res)=>{
       console.log(res); 
@@ -53,8 +54,7 @@ const userSignin=(e)=> {
         alert('fals')
             }if(res.data.hostUser){
       const token = res.data.hostUser;
-      console.log(res.data.hostUser);
-
+      // console.log(res.data.hostUser);
       const hostSignin = jwt_decode(token)
      localStorage.setItem('token',token)
       alert('true')  

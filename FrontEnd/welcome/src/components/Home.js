@@ -1,11 +1,14 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import Animation from './Animation'
+
 
 // import SignUp from '../components/SignUp'
 
 function Home() {
     return (
         <div>
+          <Animation/>
         <div className="home" >
   
 

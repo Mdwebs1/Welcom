@@ -10,13 +10,14 @@ import Login from './components/LogIn'
 import ViewHomes from './components/ViewHomes'
 import Booking from './components/Booking'
 import Logout from './components/Logout'
+
 // import Profile from './components/Profile'
 
 
 function App() {
   return (
     <div className="App">
-      
+    
        {/* <Nav/>  */}
       <Routes>
         

@@ -1,4 +1,4 @@
-.container-amirah{
+/* .container-amirah{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
@@ -17,7 +17,7 @@
 .card-title-amirah{
   grid-column-start:  2;
   grid-column-end: 3;
-}
+} */
 
 /*====================== end code amirah ==============    */
 *{
@@ -242,6 +242,10 @@ video{
   height: 100%;
   
 }
+.home-backgroundColor{
+  background-color:rgb(209, 205, 205);
+  height: 100vh;
+}
 .containerHome{
   position: relative;
 }
@@ -255,9 +259,10 @@ align-content: center;
 }
 .mapImg{
   position: absolute;
-  width: 6vw;
-  height: 10vh;
+  width: 10%;
+
   margin-top: 50px;
+  cursor: pointer;
 }
 
 .avatar{
@@ -266,8 +271,8 @@ align-content: center;
   align-items: center;
   text-align: center;
   background-color:rgb(73, 60, 109);
-  width: 9vw;
-  height: 10vh;
+  width: 19vw;
+  height: 20vh;
   margin-top: 50px;
 
 
@@ -859,6 +864,7 @@ display: grid;
   overflow: auto;
 }
 .booking{
+  background-image: url("https://freesvg.org/img/1639153518Camel-Silhouette-low-poly.png");
  background-color:rgb(222, 241, 222);
   height: 100vh;
   background-size: cover;
@@ -871,4 +877,53 @@ display: grid;
   margin-left: 2px;
   cursor: pointer;
   color: black;
+}
+
+
+/* animation */
+
+.animation {
+  position: absolute;
+  width: 100px;
+  /* this is for animation stuff */
+  animation: fade 8s ease-in-out infinite;
+}
+/* this for position and delay to make it smooth */
+.animation:nth-child(1) {
+  left: 25cm;
+  top: 5cm;
+  animation-delay: 1s;
+}
+.animation:nth-child(2) {
+  left: 15cm;
+  top: 5cm;
+  animation-delay: 2s;
+}
+.animation:nth-child(3) {
+  left: 5cm;
+  top: 5cm;
+  animation-delay: 3s;
+}
+.animation:nth-child(4) {
+  left: 25cm;
+  top: 11cm;
+  animation-delay: 4s;
+}
+.animation:nth-child(5) {
+  left: 4cm;
+  top: 12cm;
+  animation-delay: 5s;
+}
+
+/* this method for animation  */
+@keyframes fade {
+  from {
+    opacity: 1;
+    width: 0%;
+  }
+  to {
+    opacity: 0;
+    width: 10%;
+    transform: translate(50vh, 0vh);
+  }
 }

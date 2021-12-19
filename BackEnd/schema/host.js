@@ -2,9 +2,7 @@ const mongoose = require('mongoose')
 const {isEmail} = require('validator')
 const homeSchema= require('../schema/homeInfo').schema
 const Schema = mongoose.Schema
-const bcrypt= require('bcrypt')
-
- 
+const md5 = require('md5')
 const hostSchema = new Schema({
     userName:{ 
         type: String,
@@ -44,24 +42,25 @@ hostSchema.post('save', function (doc, next) {
 
 //fire a function befor doc saved to db
 hostSchema.pre('save',async function ( next) {
- const salt = await bcrypt.genSalt()
- this.password = await bcrypt.hash(this.password, salt)
+ this.password = md5(this.password);
     next()
 })
 
-hostSchema.statics.login= async function (email,password){
+hostSchema.statics.login = async function (email,password){
     
     const host= await this.findOne({ email: email});
-    console.log(host) 
+    console.log(host, "kkk") 
+    console.log(password, "pppp") 
     if(host){
-       const hostes= await bcrypt.compare(password,host.password)
+       const hostes = md5(password) === host.password;
+       console.log("hhh",hostes)
        if(hostes){
            return host
         }
-       throw Error('incorect password')
+       throw Error('incorect password')   
     }
     throw Error('incorect email')
 }
 
 const Host = mongoose.model("host",hostSchema)
-module.exports = Host
+module.exports = Host 

@@ -6,6 +6,8 @@ import Nav from './Nav'
 import jwt_decode from "jwt-decode"
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import {Link} from 'react-router-dom'
+import Animation from './Animation'
+
 
 
 function ViewHomes() {
@@ -31,8 +33,9 @@ function ViewHomes() {
       }, []);
 
     return (
-        <div>
-        
+        <div className="home-backgroundColor">
+              <Animation/>
+
 <div className="sidbar ">
 {(function () {
              if(decodedData!==undefined) {
@@ -50,7 +53,7 @@ function ViewHomes() {
       */}
     
       </div>
-{/* 
+
         <div className="containerHome">
                     {Homes.map((host) => {
                           return(
@@ -75,11 +78,11 @@ function ViewHomes() {
     })}
   
         </div>
-       */}
+      
 
        {/* ========================================== code amirah =========================== */}
 
-       <div className="container-amirah">
+       {/* <div className="container-amirah">
           <div className="card-amirah">
             <div className="card-item-amirah">
             <div className="card-title-amirah">
@@ -97,7 +100,7 @@ function ViewHomes() {
           </div>
 
 
-       </div>
+       </div> */}
        {/* ========================================== code amirah =========================== */}
 
        

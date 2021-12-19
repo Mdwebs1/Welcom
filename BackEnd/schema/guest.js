@@ -43,7 +43,7 @@ guestSchema.pre('save',async function ( next) {
     next()
 })
 
-guestSchema.statics.login= async function (email,password){
+guestSchema.statics.login = async function (email,password){
     
     const guest= await this.findOne({ email: email});
     if(guest){
