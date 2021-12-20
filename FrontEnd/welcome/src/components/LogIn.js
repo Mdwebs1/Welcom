@@ -8,7 +8,7 @@ import vedio from '../vedio/vedio.mp4'
 function LogIn() {
   const [password,setPassword] = useState()
   const [email,setEmail] = useState("")
-  let [users, setUser] = useState();
+  // let [users, setUser] = useState();
   const [ckeck,setCheck] = useState("")
   let navigate = useNavigate()
 

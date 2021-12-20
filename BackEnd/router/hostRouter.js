@@ -110,7 +110,7 @@ router.post("/signup",async (req, res) => {
     try{
       
       const hostUser= await Host.create({userName,name,email, password: md5(password),hostImage})
-      const token =createToken(hostUser._id,hostUser.email,hostUser.name,hostUser.userName)
+      const token =createToken(hostUser._id,hostUser.email,hostUser.name,hostUser.userName,hostUser)
       res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
        res.status(201).json({hostUser:token})
     }
@@ -170,7 +170,7 @@ router.put("/updateHomes", (req, res) => {
 //update host profile
 
   router.patch('/updateProdile/:id', async (req,res)=> {
-    const allowedUpdates = ['userName', 'email', 'name','password','hostImage'];
+    const allowedUpdates = ['userName', 'email', 'name','password','hostImage','city'];
     const updates = Object.keys(req.body)
     const isValidOperation = updates.every((update)=> allowedUpdates.includes(update))
     if(!isValidOperation) {

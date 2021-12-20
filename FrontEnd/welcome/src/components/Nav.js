@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import HomeIcon from '@mui/icons-material/Home';
 import LogoutIcon from '@mui/icons-material/Logout';
 import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 
 const Logout= ()=> {
@@ -12,7 +13,7 @@ const Logout= ()=> {
 
 
 function Nav() {
- 
+  const navigate = useNavigate();
 
 
     return (
@@ -25,7 +26,7 @@ function Nav() {
             </li> 
            
             <li>
-                <a onClick={Logout} className="Logout"> <LogoutIcon sx={{ fontSize: 40, color: '#000' }}/></a>
+                <a onClick={Logout} className="Logout"> <LogoutIcon sx={{ fontSize: 40, color: '#000' }} onClick={()=>{navigate("/")}}/></a>
             </li>
 
           </ul>

@@ -31,8 +31,7 @@ function HostProf() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [startDate, setStartDate] = useState();
   const [typeOfUser, setTypeOfUser] = useState();
-  const [ state, setState ] = useState({ message: "", name: "" })
-	const [ chat, setChat ] = useState([])
+  const [city , setCity] = useState();
 
 	const socketRef = useRef()
 
@@ -181,6 +180,7 @@ function HostProf() {
     setUserEmail(users.email);
     setPassword(users.password);
     setUserImage(users.hostImage);
+    setCity(users.city);
     setEnableProfile(true);
   };
 
@@ -192,6 +192,7 @@ function HostProf() {
       email: userEmail,
       password: password,
       hostImage: userImage,
+      city: city,
     };
     axios
       .patch(`http://localhost:8080/hostRouter/updateProdile/${id}`, obj)
@@ -352,6 +353,15 @@ function HostProf() {
                                 value={password}
                                 onChange={(e) => {
                                   setPassword(e.target.value);
+                                }}
+                              />
+                              <br/>
+                              <input
+                                type="string"
+                                placeholder="city"
+                                value={city}
+                                onChange={(e) => {
+                                  setCity(e.target.value);
                                 }}
                               />
                               <br />

@@ -8,7 +8,6 @@ import Animation from './Animation'
 function Home() {
     return (
         <div>
-          <Animation/>
         <div className="home" >
   
 

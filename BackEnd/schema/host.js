@@ -13,6 +13,10 @@ const hostSchema = new Schema({
         type: String,
         required: [true, "name should be provided"]
     },
+    city:{
+        type: String,
+       
+    },
     email:{
         type:String,
         required: [true, " email should be provided"],

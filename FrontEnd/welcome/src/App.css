@@ -22,6 +22,7 @@
 /*====================== end code amirah ==============    */
 *{
   margin: 0%;
+  transition: all 300ms linear;
 }
 
 .home {
@@ -260,7 +261,8 @@ align-content: center;
 .mapImg{
   position: absolute;
   width: 10%;
-
+  height: 60%;
+  object-fit: cover;
   margin-top: 50px;
   cursor: pointer;
 }

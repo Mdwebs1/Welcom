@@ -68,6 +68,7 @@ function ViewHomes() {
    <div class="title">
    <br/> <br/> 
       <h4>{host.name}</h4>
+      <h4>{host.city}</h4>
           </div>
             </div>
             </div>
