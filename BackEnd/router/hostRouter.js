@@ -64,6 +64,14 @@ router.get("/:id", (req, res) => {
      }) 
 
   });
+// search for city
+  router.get("/findCity/:city", (req, res) => {
+    console.log("paramss",req.params);
+    Host.find({city: req.params.city},(err, host)=>{
+        res.send(host)
+     }) 
+
+  });
 
   //endpoint for booking
 router.get("/booking/:id", async(req, res) => {

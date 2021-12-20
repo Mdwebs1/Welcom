@@ -15,7 +15,7 @@ function LogIn() {
 
 const userSignin=(e)=> { 
   if(ckeck==="Guest"){ 
-  console.log("gfgf")
+ 
 
      e.preventDefault();
     axios.post("http://localhost:8080/guestRouter/login",{email,password}).then((res) => {

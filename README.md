@@ -12,7 +12,7 @@
 
 - **Signup:** As a user, I can register on the platform so that I can reserve a suitable place for me.
 
-- **Login:** As a user I can login to the platform so that I can log my exit points.
+- **Login:** As a user I can login to the platform .
 
 - **Logout:** As a user I can logout from the platform so no one else can use it.
 
@@ -20,11 +20,11 @@
 
 - **View all homes** As a user, I want to see all the homes that I can book in and their owners and choose the appropriate one.
 
-- **Edit Guest** As a guest I can edit my profile, add or substract exit points.
+- **Edit Guest** As a guest I can edit my profile.
 
-- **Edit Host** As a host I can edit my profile, add or substract exit points.
+- **Edit Host** As a host I can edit my profile.
 
-- **Edit Home** As a host I can edit my home, add or substract exit point.
+- **Edit Home** As a host I can edit my home.
 
 - **Booking** As a host I can except or reject the request from the guest.
 

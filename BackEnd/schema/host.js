@@ -50,7 +50,7 @@ hostSchema.statics.login = async function (email,password){
     console.log(password, "pppp") 
     if(host){
        const hostes = md5(password) === host.password;
-       console.log("hhh",hostes, password, host.password, md5(password))
+       console.log(hostes, password, host.password, md5(password))
        if(hostes){
            return host
         }

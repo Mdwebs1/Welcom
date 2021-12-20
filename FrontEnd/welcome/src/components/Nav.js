@@ -6,16 +6,18 @@ import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 
 
-const Logout= ()=> {
-  localStorage.clear();
-  axios.get("http://localhost:8080/hostRouter/logout")
-}
+
 
 
 function Nav() {
-  const navigate = useNavigate();
+   const navigate = useNavigate();
+  
+   const Logout= ()=> {
+    localStorage.clear();
 
-
+    navigate('/')
+  
+  }
     return (
         <div>
                           <nav>
@@ -26,7 +28,7 @@ function Nav() {
             </li> 
            
             <li>
-                <a onClick={Logout} className="Logout"> <LogoutIcon sx={{ fontSize: 40, color: '#000' }} onClick={()=>{navigate("/")}}/></a>
+                <a onClick={Logout} className="Logout"> <LogoutIcon sx={{ fontSize: 40, color: '#000' }} /></a>
             </li>
 
           </ul>

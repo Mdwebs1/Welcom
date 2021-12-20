@@ -5,13 +5,15 @@ import {useParams,useNavigate} from "react-router-dom"
 import Nav from './Nav'
 import jwt_decode from "jwt-decode"
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import {Link} from 'react-router-dom'
+// import LoginIcon from '@mui/icons-material/Login';
 import Animation from './Animation'
 
 
 
 function ViewHomes() {
     const [Homes ,setHomes] = useState([])
+    const [search ,setSearch] = useState()
+    const [city ,setCity] = useState()
     let { hostId } = useParams();
     let params = useParams();
     const navigate = useNavigate();
@@ -32,6 +34,16 @@ function ViewHomes() {
         });
       }, []);
 
+
+      const handelSearch =(e)=>{
+        console.log(search)
+        e.preventDefault();
+        axios.get(`http://localhost:8080/hostRouter/findCity/${search}`)
+        .then((res) => {
+          console.log(res.data);
+           setCity(res.data)
+        })
+      }
     return (
         <div className="home-backgroundColor">
               <Animation/>
@@ -53,6 +65,8 @@ function ViewHomes() {
       */}
     
       </div>
+      <input onChange={(e) => setSearch(e.target.value)} ></input><br/><br/>
+      <button onClick={(e)=>handelSearch(e)}>Search</button>
 
         <div className="containerHome">
                     {Homes.map((host) => {
