@@ -867,12 +867,25 @@ display: grid;
   background-image: url("https://freesvg.org/img/1639153518Camel-Silhouette-low-poly.png");
  background-color:rgb(222, 241, 222);
   height: 100vh;
-  background-size: cover;
+  background-size: 30%;
   background-repeat: no-repeat;
+  background-position: bottom left;
+  gap:10px;
 }
 .h1{
   text-align: center;
 }
+.booking-btn{
+  border-radius: 5px;
+  padding:10px;
+  background-color:  rgba(255, 82, 145, 1);;
+  cursor: pointer;
+  border: none;
+}
+.boking-center{
+  text-align: center;
+}
+
 .Logout{ 
   margin-left: 2px;
   cursor: pointer;

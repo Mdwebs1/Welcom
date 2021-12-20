@@ -64,17 +64,19 @@ function Booking() {
        
 <div className="bookingTest">
           <Nav />
-<div >
+<div className='boking-center'>
 <h1 className='h1'>طلبات الإقامة</h1>
 
         {allBookinh.map((booking)=>{
             return(
-                <div >
-                {booking.guest.name}
-                {booking.bookingStatues}
-                
-                <button onClick={(e) =>{accepted(booking._id)}}>Accept</button>
-                <button onClick={(e) =>{rejected(booking._id)}}>Rejected</button>
+                <div className="btest" >
+            <p>{booking.guest.name} : اسم الضيف</p>    
+               <p>{booking.bookingStatues} : حالة الطلب</p> 
+                  
+                   <div className="btest"> 
+                    <button className='booking-btn' onClick={(e) =>{accepted(booking._id)}}>Accept</button>
+                <button className='booking-btn' onClick={(e) =>{rejected(booking._id)}}>Rejected</button></div>
+              
                 </div>
            
             )

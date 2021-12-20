@@ -73,8 +73,8 @@ router.post("/signup",async (req, res) => {
     try{
       
       const salt = await bcrypt.genSalt()
-      let myPassword = await bcrypt.hash(this.password, salt)
-
+      let myPassword = await bcrypt.hash(password, salt)
+      console.log(myPassword)
       const guestUser= await Guest.create({name,userName,email, password: myPassword})
       const token =createToken(guestUser._id,guestUser.email,guestUser.name,guestUser.userName)
       res.cookie('jwt',token,{httpOnly:true , maxAge: maxAge * 1000})
