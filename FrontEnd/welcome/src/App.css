@@ -99,8 +99,7 @@ a{
  }
 .inp-search{
   border-radius: 5px;
-  padding:12px;
-  padding-right: 20px;
+  padding:10px;
 
 }
  
@@ -199,10 +198,14 @@ h2::before {
 }
 #fld{
   width: 10%;
-  /* box-shadow: 10px 10px 10px rgb(47, 116, 27); */
+  height: 70%;
+  box-shadow: 14px 14px 19px -1px rgba(0,0,0,0.33);
+  -webkit-box-shadow: 14px 14px 19px -1px rgba(0,0,0,0.33);
+  -moz-box-shadow: 14px 14px 19px -1px rgba(0,0,0,0.33);
   margin: 100px auto;
   padding-top: 30px;
   border: none;
+
 }
 legend{
   font-size: 40px;
@@ -235,6 +238,7 @@ input:focus{
   color: white;
   transition: all 0.5s ease-in-out;
   outline: 0;
+  margin-left: 4px;
 }
 .btn:hover{
   background-color: rgb(47, 116, 27);

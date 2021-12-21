@@ -35,15 +35,13 @@ function Nav() {
               <Link to="/ViewHomes" ><HomeIcon  sx={{ fontSize: 40, color: '#000' }}/></Link>
             </li> 
            
-            <li>
-                <a onClick={Logout} className="Logout"> <LogoutIcon sx={{ fontSize: 40, color: '#000' }} /></a>
-            </li>
+         
 
             <li >
             {(function () {
              if(decodedData!==undefined) {
                if( decodedData.typeOfUser==="guestUser"){
-                 return (<div onClick={()=>{navigate("/GuestProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/></div>)
+                 return (<div onClick={()=>{navigate("/GuestProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 30 }}/></div>)
                }if(decodedData.typeOfUser==="hostUser"){
                  return(<div onClick={()=>{navigate("/HostProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/></div>)
                 
@@ -51,6 +49,9 @@ function Nav() {
              }      
                   })()}
 
+            </li>
+            <li>
+                <a onClick={Logout} className="Logout"> <LogoutIcon sx={{ fontSize: 30, color: '#000' }} /></a>
             </li>
 
           </ul>

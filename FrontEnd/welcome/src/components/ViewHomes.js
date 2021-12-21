@@ -12,7 +12,6 @@ import Animation from './Animation'
 function ViewHomes() {
     const [Homes ,setHomes] = useState([])
     const [search ,setSearch] = useState()
-    const [city ,setCity] = useState()
     let { hostId } = useParams();
     let params = useParams();
     const navigate = useNavigate();
@@ -39,8 +38,9 @@ function ViewHomes() {
         e.preventDefault();
         axios.get(`http://localhost:8080/hostRouter/findCity/${search}`)
         .then((res) => {
+          console.log("hello");
           console.log(res.data);
-           setCity(res.data)
+          setHomes(res.data)
         })
       }
     return (
@@ -61,7 +61,7 @@ function ViewHomes() {
                   <Nav />
                   <div className="search">
                   <input className="inp-search" onChange={(e) => setSearch(e.target.value)} ></input>
-                  <SearchOutlinedIcon sx={{ fontSize: 40,color: '#000' }} onClick={(e)=>handelSearch(e)}/>
+                  <SearchOutlinedIcon sx={{ fontSize: 30,color: '#000' }} onClick={(e)=>handelSearch(e)}/>
 
                   {/* <button  onClick={(e)=>handelSearch(e)} ><SearchOutlinedIcon sx={{ fontSize: 30, color: '#000' }}/></button> */}
                   </div>
