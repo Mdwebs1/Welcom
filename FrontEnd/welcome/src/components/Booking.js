@@ -70,8 +70,8 @@ function Booking() {
         {allBookinh.map((booking)=>{
             return(
                 <div className="btest" >
-            <p>{booking.guest.name} : اسم الضيف</p>    
-               <p>{booking.bookingStatues} : حالة الطلب</p> 
+            <h3>{booking.guest.name} : اسم الضيف</h3>    
+               <h3>{booking.bookingStatues} : حالة الطلب</h3> 
                   
                    <div className="btest"> 
                     <button className='booking-btn' onClick={(e) =>{accepted(booking._id)}}>Accept</button>

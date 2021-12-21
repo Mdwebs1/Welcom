@@ -3,8 +3,8 @@ const {isEmail} = require('validator')
 const homeSchema= require('../schema/homeInfo').schema
 const Schema = mongoose.Schema
 const bcrypt = require('bcryptjs');
-
 const md5 = require('md5')
+
 const hostSchema = new Schema({
     userName:{ 
         type: String,
@@ -48,11 +48,10 @@ hostSchema.post('save', function (doc, next) {
 hostSchema.statics.login = async function (email,password){
     
     const host= await this.findOne({ email: email});
-    console.log(host, "kkk") 
-    console.log(host.password, "pppp") 
+   
     if(host){
        const hostes = md5(password) == host.password;
-       console.log(hostes, password, host.password, md5(password))
+    //    console.log(hostes, password, host.password, md5(password))
        if(hostes){
            return host
         }
@@ -60,16 +59,7 @@ hostSchema.statics.login = async function (email,password){
     }
     throw Error('incorect email')
 
-    // const host= await this.findOne({ email}).select("+password");
-    // console.log(password, "pppp") 
-    // if(host){
-    //     const hostes = await bcrypt.hash(password)
 
-    //     if(hostes == host.password){
-    //         return host;
-    //     }
-    //     throw Error('incorect password')   
-    // }
 }
 
 const Host = mongoose.model("host",hostSchema)

@@ -30,7 +30,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 95vh;
+  height: 85vh;
  
 }
 
@@ -158,13 +158,11 @@ h2::before {
 }
 .button-div{
   display: flex;
-  gap: 10px;
   justify-content: center;
   align-items: center;
- 
-
-
+  margin: 0%;
 }
+
 .btn-home{
   border-radius: 5px;
   padding:11px;
@@ -173,10 +171,9 @@ h2::before {
   border: none;
   text-align: center;
   color:white;
-  margin-top:5px;
-  
+  margin-left: 4px;
  
-
+  
 }
 .btn-home:hover{
   background: rgba(6, 141, 126, 1);
@@ -187,7 +184,6 @@ h2::before {
 
 .signUp{
   display: flex;
-
 }
 
 
@@ -891,6 +887,12 @@ display: grid;
   background-color:  rgba(66%, 18%, 18%);
   cursor: pointer;
   border: none;
+  margin: 4px;
+}
+.booking-btn:hover{
+  background: rgba(6, 141, 126, 1);
+  width:90px;
+  height: 50px
 }
 .boking-center{
   text-align: center;
