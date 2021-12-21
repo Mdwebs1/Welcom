@@ -95,14 +95,24 @@ a{
  .sidbar{
  display: flex;
  cursor: pointer;
- margin:4px;
-justify-content: space-around;
- 
+ justify-content: space-between;
+ }
+.inp-search{
+  border-radius: 5px;
+  padding:12px;
+  padding-right: 20px;
 
 }
-
-.nav{
  
+.search{
+  display: flex;
+  align-items: center;
+  margin-top:20px;
+
+}
+.nav{
+  align-items: center;
+  margin-top:20px;
   display: flex;
 }
 

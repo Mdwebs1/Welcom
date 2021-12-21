@@ -190,7 +190,11 @@ router.put("/updateHomes", (req, res) => {
         // find id passed into the function
         if(!host) {return res.status(404).send(404).send()}
         updates.forEach((update)=> {
-          host[update] = req.body[update]
+          if (update == 'password') {
+            host[update] =  md5(req.body[update])
+          }else{
+            host[update] = req.body[update]
+          }
             // update the values and keys dynamically
         })
         await host.save()

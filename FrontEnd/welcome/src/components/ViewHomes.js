@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 import {useParams,useNavigate} from "react-router-dom"
 import Nav from './Nav'
 import jwt_decode from "jwt-decode"
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
-// import LoginIcon from '@mui/icons-material/Login';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';// import LoginIcon from '@mui/icons-material/Login';
 import Animation from './Animation'
 
 
@@ -61,8 +60,10 @@ function ViewHomes() {
                   })()} */}
                   <Nav />
                   <div className="search">
-                  <input onChange={(e) => setSearch(e.target.value)} ></input>
-                  <button onClick={(e)=>handelSearch(e)}>Search</button>
+                  <input className="inp-search" onChange={(e) => setSearch(e.target.value)} ></input>
+                  <SearchOutlinedIcon sx={{ fontSize: 40,color: '#000' }} onClick={(e)=>handelSearch(e)}/>
+
+                  {/* <button  onClick={(e)=>handelSearch(e)} ><SearchOutlinedIcon sx={{ fontSize: 30, color: '#000' }}/></button> */}
                   </div>
 {/* { typeOfUser=="guestUser"?<div onClick={()=>{navigate("/GuestProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/></div>:
                           <div onClick={()=>{navigate("/HostProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/></div>}

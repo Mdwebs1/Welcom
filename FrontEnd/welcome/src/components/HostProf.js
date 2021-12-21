@@ -240,7 +240,7 @@ function HostProf() {
                           تحديث معلوماتك الشخصية
                         </a>
                 
-            <button className="button" onClick={() => {navigate(`/Booking/${decodedData.id}`)}}><a href="components/Booking.js">طلبات الحجز</a> </button>
+            <button className="button" onClick={() => {navigate(`/Booking/${decodedData.id}`)}}><>طلبات الحجز</> </button>
             </>
        ): <></>}
       
