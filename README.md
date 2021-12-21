@@ -229,6 +229,6 @@ Wireframe
 
 The url to your presentation slides
 
-[Figma Link](http://www.figma.com/file/GNvDVBD1NPTydU2PJy4DDM/dataBASE?node-id=0%3A88)
+[Figma Link](https://www.figma.com/file/rCa94vx4wD4LU1BuOELGA5/Untitled?node-id=0%3A1)
 
 https://ibb.co/zHzCg4W
