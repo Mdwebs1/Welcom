@@ -107,12 +107,11 @@ a{
 .search{
   display: flex;
   align-items: center;
-  margin-top:20px;
 
 }
 .nav{
   align-items: center;
-  margin-top:20px;
+  padding:20px;
   display: flex;
 }
 
@@ -169,7 +168,7 @@ h2::before {
 .btn-home{
   border-radius: 5px;
   padding:11px;
-  background-color: rgba(255, 82, 145, 1);
+  background-color:  rgba(66%, 18%, 18%);
   cursor: pointer;
   border: none;
   text-align: center;
@@ -283,7 +282,8 @@ align-content: center;
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color:rgb(73, 60, 109);
+  /* background-color:rgb(73, 60, 109); */
+  background-color:rgb(59%, 16%, 24%);
   width: 19vw;
   height: 20vh;
   margin-top: 50px;
@@ -766,13 +766,10 @@ display: grid;
   margin:5px;
   border-radius: 5px;
   padding:10px;
-  background-color:  rgba(255, 82, 145, 1);;
+  background-color:  rgba(66%, 18%, 18%);
   cursor: pointer;
   border: none;
- 
-
-
-  
+  color: white;
 }
 .button:hover{
   background: rgba(6, 141, 126, 1);
@@ -782,7 +779,7 @@ display: grid;
 .button1{
   border-radius: 5px;
   padding:10px;
-  background-color:  rgba(255, 82, 145, 1);;
+  background-color:  rgba(66%, 18%, 18%);
   cursor: pointer;
   border: none;
   margin-left: 50vw;
@@ -891,7 +888,7 @@ display: grid;
 .booking-btn{
   border-radius: 5px;
   padding:10px;
-  background-color:  rgba(255, 82, 145, 1);;
+  background-color:  rgba(66%, 18%, 18%);
   cursor: pointer;
   border: none;
 }
