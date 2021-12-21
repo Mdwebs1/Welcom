@@ -97,9 +97,9 @@ router.post("/login", async(req, res) => {
   try{
 
     const hostUser = await Host.login(email, password)
-    console.log(hostUser)
+    console.log(hostUser, 'mmm')
     const token =createToken(hostUser._id,hostUser.email,hostUser.name,hostUser.userName)
-    console.log(token)
+    console.log(token, 'nnn')
     res.cookie('jwt',token,{httpOnly:true , maxAge: maxAge * 1000})
     res.status(200).json({hostUser:token})
   }

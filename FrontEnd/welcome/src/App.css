@@ -96,7 +96,7 @@ a{
  display: flex;
  cursor: pointer;
  margin:4px;
-
+justify-content: space-around;
  
 
 }
@@ -243,6 +243,7 @@ video{
   height: 100%;
   
 }
+
 .home-backgroundColor{
   background-color:rgb(209, 205, 205);
   height: 100vh;

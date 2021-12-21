@@ -2,19 +2,27 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import HomeIcon from '@mui/icons-material/Home';
 import LogoutIcon from '@mui/icons-material/Logout';
-import axios from 'axios'
-import { useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom"
+import jwt_decode from "jwt-decode"
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 
 
 
+
+let decodedData ;
+const storedToken = localStorage.getItem("token");
+const typeOfUser = localStorage.getItem("typeOfUser");
+if (storedToken){
+  decodedData = jwt_decode(storedToken, { payload: true });
+   console.log(decodedData);
+ }
 
 function Nav() {
-   const navigate = useNavigate();
-  
+  let navigate = useNavigate()
+
    const Logout= ()=> {
     localStorage.clear();
-
     navigate('/')
   
   }
@@ -29,6 +37,20 @@ function Nav() {
            
             <li>
                 <a onClick={Logout} className="Logout"> <LogoutIcon sx={{ fontSize: 40, color: '#000' }} /></a>
+            </li>
+
+            <li >
+            {(function () {
+             if(decodedData!==undefined) {
+               if( decodedData.typeOfUser==="guestUser"){
+                 return (<div onClick={()=>{navigate("/GuestProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/></div>)
+               }if(decodedData.typeOfUser==="hostUser"){
+                 return(<div onClick={()=>{navigate("/HostProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/></div>)
+                
+               }
+             }      
+                  })()}
+
             </li>
 
           </ul>

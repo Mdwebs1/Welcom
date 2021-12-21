@@ -2,6 +2,8 @@ const mongoose = require('mongoose')
 const {isEmail} = require('validator')
 const homeSchema= require('../schema/homeInfo').schema
 const Schema = mongoose.Schema
+const bcrypt = require('bcryptjs');
+
 const md5 = require('md5')
 const hostSchema = new Schema({
     userName:{ 
@@ -27,7 +29,7 @@ const hostSchema = new Schema({
     password:{
     type:String,
     minLength:[6,"pass more than 6"],
-    required: [true, "pass should be provided"],
+    required: [true, "pass should be provided"]
  },
  hostImage:{
     type:String
@@ -47,16 +49,27 @@ hostSchema.statics.login = async function (email,password){
     
     const host= await this.findOne({ email: email});
     console.log(host, "kkk") 
-    console.log(password, "pppp") 
+    console.log(host.password, "pppp") 
     if(host){
-       const hostes = md5(password) === host.password;
-       console.log(hostes, password, host.password, md5(password))
+       const hostes = md5(password) == host.password;
+       console.log(hostes, password, typeof(host.password), typeof( md5(password)))
        if(hostes){
            return host
         }
        throw Error('incorect password')   
     }
     throw Error('incorect email')
+
+    // const host= await this.findOne({ email}).select("+password");
+    // console.log(password, "pppp") 
+    // if(host){
+    //     const hostes = await bcrypt.hash(password)
+
+    //     if(hostes == host.password){
+    //         return host;
+    //     }
+    //     throw Error('incorect password')   
+    // }
 }
 
 const Host = mongoose.model("host",hostSchema)

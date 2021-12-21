@@ -49,7 +49,7 @@ function ViewHomes() {
               <Animation/>
 
 <div className="sidbar ">
-{(function () {
+{/* {(function () {
              if(decodedData!==undefined) {
                if( decodedData.typeOfUser==="guestUser"){
                  return (<div onClick={()=>{navigate("/GuestProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/></div>)
@@ -58,15 +58,18 @@ function ViewHomes() {
                 
                }
              }      
-                  })()}
+                  })()} */}
                   <Nav />
+                  <div className="search">
+                  <input onChange={(e) => setSearch(e.target.value)} ></input>
+                  <button onClick={(e)=>handelSearch(e)}>Search</button>
+                  </div>
 {/* { typeOfUser=="guestUser"?<div onClick={()=>{navigate("/GuestProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/></div>:
                           <div onClick={()=>{navigate("/HostProf/"+decodedData.id)}}><AccountBoxIcon sx={{ fontSize: 40 }}/></div>}
       */}
     
       </div>
-      <input onChange={(e) => setSearch(e.target.value)} ></input><br/><br/>
-      <button onClick={(e)=>handelSearch(e)}>Search</button>
+     
 
         <div className="containerHome">
                     {Homes.map((host) => {
