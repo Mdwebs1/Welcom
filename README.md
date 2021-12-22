@@ -44,12 +44,12 @@ Guest profile:
 
 - update profile
 
-
-
-
-  - socit.io
-  - more design
+  ### Extra 
   
+  - socit.io
+
+  - more design
+
 
 # Client / Frontend
 
