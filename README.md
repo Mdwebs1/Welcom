@@ -38,23 +38,20 @@
 
 Guest profile:
 
-- see my profile
+- see mor information 
 
-- see exit point
+- delete acount
 
-- See all homes and owners
+- update profile
 
-- Reservation of a house and the time of arrival
+----------------------------------------------------------------
 
+----------------------------------------------------------------
+
+
+  - socit.io
+  - more design
   
-
-  Host profile:
-
-  - see my profile
-  - see exit point
-  - See all homes and owners
-  - Add homes
-  - except or reject the request from the guest
 
 # Client / Frontend
 
@@ -70,7 +67,7 @@ Guest profile:
 | `/ViewHomes/:id`   | ViewHomes | guest and host              | Details of host name and photo                               |
 | /HostProf          | HostProf  | host only                   | Shows all host information                                   |
 | /Booking           | Booking   | host only                   | Shows all request for booking                                |
-| /LogOut            | LogOut    | guest and host              | logout from website                                          |
+                                 |
 |                    |           |                             |                                                              |
 |                    |           |                             |                                                              |
 |                    |           |                             |                                                              |
