@@ -50,14 +50,15 @@ hostSchema.statics.login = async function (email,password){
     const host= await this.findOne({ email: email});
    
     if(host){
-       const hostes = md5(password) == host.password;
+       const hostes = md5(password) === host.password;
     //    console.log(hostes, password, host.password, md5(password))
+    console.log(md5(password))
        if(hostes){
            return host
         }
-       throw Error('incorect password')   
+       throw Error('incorrect password')   
     }
-    throw Error('incorect email')
+    throw Error('incorrect email')
 
 
 }

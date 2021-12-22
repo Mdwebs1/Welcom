@@ -11,7 +11,7 @@ const md5 = require('md5')
 //handle errors
 const handleError = (err)=>{
     
-    console.log(err.message, err.code);
+    console.log("error", err.message, err.code);
   let error = { email: '', password: '' };
 
   //incorrect email
@@ -104,8 +104,9 @@ router.post("/login", async(req, res) => {
     res.status(200).json({hostUser:token})
   }
   catch(err){
+    console.log("err")
       const errors = handleError(err);
-    res.status(400).json({errors})
+    res.status(200).json({errors})
   }
 });
 
@@ -178,7 +179,7 @@ router.put("/updateHomes", (req, res) => {
 //update host profile
 
   router.patch('/updateProdile/:id', async (req,res)=> {
-    const allowedUpdates = ['userName', 'email', 'name','password','hostImage','city'];
+    const allowedUpdates = ['userName', 'email', 'name','hostImage','city'];
     const updates = Object.keys(req.body)
     const isValidOperation = updates.every((update)=> allowedUpdates.includes(update))
     if(!isValidOperation) {

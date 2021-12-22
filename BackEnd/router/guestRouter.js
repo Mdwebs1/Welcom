@@ -83,7 +83,7 @@ router.post("/signup",async (req, res) => {
     catch(err){
       const error = handleError(err)
 
-        res.status(400).json(error)
+        res.status(200).json(error)
     }
     //console.log(email, password)
     //res.send('new signup');
@@ -103,7 +103,7 @@ router.post("/login", async(req, res) => {
     }
     catch(err){
         const errors = handleError(err);
-      res.status(400).json({errors})
+      res.status(200).json({errors})
     }
   });
 

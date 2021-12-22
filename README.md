@@ -220,7 +220,7 @@ https://github.com/Mdwebs1/finalProject
 
 The url to your presentation slides
 
-[Slides Link](http://slides.com/)
+[Slides Link](https://prezi.com/view/t9b2nEwtfMLTpfHZpPrW/)
 
 Wireframe
 

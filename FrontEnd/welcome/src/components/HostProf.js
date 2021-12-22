@@ -1,7 +1,5 @@
 
-import React, { useEffect, useRef, useState } from "react"
-import io from "socket.io-client"
-import TextField from "@material-ui/core/TextField"
+import React, { useEffect, useState } from "react"
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import jwt_decode from "jwt-decode";
@@ -33,7 +31,6 @@ function HostProf() {
   const [typeOfUser, setTypeOfUser] = useState();
   const [city , setCity] = useState();
 
-	const socketRef = useRef()
 
   let { id } = useParams();
   let [homes, setHomes] = useState([]);
@@ -54,37 +51,7 @@ function HostProf() {
     }
   }
 
-  // useEffect(
-	// 	() => {
-	// 		socketRef.current = io.connect("http://localhost:8080")
-	// 		socketRef.current.on("message", ({ name, message }) => {
-	// 			setChat([ ...chat, { name, message } ])
-	// 		})
-	// 		return () => socketRef.current.disconnect()
-	// 	},
-	// 	[ chat ]
-	// )
 
-	// const onTextChange = (e) => {
-	// 	setState({ ...state, [e.target.name]: e.target.value })
-	// }
-
-	// const onMessageSubmit = (e) => {
-	// 	const { name, message } = state
-	// 	socketRef.current.emit("message", { name, message })
-	// 	e.preventDefault()
-	// 	setState({ message: "", name })
-	// }
-
-	// const renderChat = () => {
-	// 	return chat.map(({ name, message }, index) => (
-	// 		<div key={index}>
-	// 			<h3>
-	// 				{name}: <span>{message}</span>
-	// 			</h3>
-	// 		</div>
-	// 	))
-	// }
 
   useEffect(() => {
     setTypeOfUser(decodedData.typeOfUser);
@@ -178,7 +145,6 @@ function HostProf() {
     setName(users.name);
     setUserName(users.userName);
     setUserEmail(users.email);
-    setPassword(users.password);
     setUserImage(users.hostImage);
     setCity(users.city);
     setEnableProfile(true);
@@ -190,7 +156,6 @@ function HostProf() {
       name: name,
       userName: userName,
       email: userEmail,
-      password: password,
       hostImage: userImage,
       city: city,
     };
@@ -219,12 +184,7 @@ function HostProf() {
       });
   };
 
-  //   {(function(){
-  //     if(decodedData!=undefined){
-  //       console.log(decodedData)
-  //       console.log(decodedData.id)
-  //       console.log(id)
-  //       if(decodedData.id==id){
+
   return (
     <div>
        <Nav />
@@ -256,7 +216,7 @@ function HostProf() {
             <h1 className="hostProfText">البيت بيتك والعين اوسع لك من المكان </h1>
            
           <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-            {/* <h1 className="hostIn">userName :{users.userName}</h1> */}
+         
 
             
 
@@ -281,7 +241,7 @@ function HostProf() {
                             &times;
                           </a>
                           <div class="content">
-                            <form onSubmit={(e) => Addhome(e)}>
+                            <form onSubmit={(e) => Addhome(e)} className="pop-form">
                               <input
                                 placeholder=" Home Image"
                                 value={homeImage}
@@ -292,7 +252,7 @@ function HostProf() {
                               <br />
                               <input placeholder="phoneNumber"value={phoneNumber}onChange={(e) => { setPhoneNumber(e.target.value) }}/>
                               <br />
-                              <textarea placeholder="description" value={informations}  onChange={(e) => {setInformations(e.target.value);}}/>
+                              <textarea className="textarea" placeholder="description" value={informations}  onChange={(e) => {setInformations(e.target.value);}}/>
                               <br />
                             
                               {enablePost ? (<button className="btn-home">Post</button>) : (<></>   )}
@@ -348,15 +308,6 @@ function HostProf() {
                               />
                               <br />
                               <input
-                                type="password"
-                                placeholder="Password"
-                                value={password}
-                                onChange={(e) => {
-                                  setPassword(e.target.value);
-                                }}
-                              />
-                              <br/>
-                              <input
                                 type="string"
                                 placeholder="city"
                                 value={city}
@@ -406,8 +357,7 @@ function HostProf() {
     
           </div> 
         
-      {/* </div> */}
-
+    
     </div>
     <h1 className="hostIn">{users.name} : صاحب المنزل </h1>
     
@@ -417,6 +367,10 @@ function HostProf() {
                 <div className="homeInfo">
                <div > 
                <img className="homeInfoImg" src={home.image} alt="home image" />
+               <div className="btn-group">
+                   <button className="btn-homeUpdate" onClick={() => { deleteHome(home._id); }} >الحذف</button>
+                    <a  onClick={(e) => { window.location.href = "#popup2";ubdate(e, home);}}>,<button className="btn-homeUpdate">الإضافة</button>  </a>
+                   </div>
                </div>
                <div className="homeInfoDescription">
                   <h3 className="hostIn">{home.phoneNumber} : للتواصل</h3>
@@ -447,8 +401,9 @@ function HostProf() {
                   console.log("helllo");
                   return (
                     <>
-                   <br></br> <button className="btn-homeUpdate" onClick={() => { deleteHome(home._id); }} >الحذف</button>
-                    <a className="btn-homeUpdate" onClick={(e) => { window.location.href = "#popup2";ubdate(e, home);}}> الإضافة </a>
+                   <br></br> 
+                
+                  
                     </>
 
 )}}})()}
@@ -461,22 +416,7 @@ function HostProf() {
                         console.log("helllo");
                         return (
                           <>
-                            {/* <div id="popup3" class="overlay">
-	<div class="popup3">
-
-		<a class="close" href="#">&times;</a>
-		<div class="content1">
-    <form>
-      <input onChange={(e) =>setInformations(e.target.value) }></input>
-      <input onChange={(e) =>setHomeImage(e.target.value) }></input>
-      <input onChange={(e) =>setPhoneNumber(e.target.value) }></input>
-    </form>
-		 <button onClick={()=>{deleteHome(home._id)}} className="btn-home">Delete</button>
-                    <button  onClick={(e)=>ubdate(e,home)} className="btn-home">ubdate</button>
-                    {/* <button  className="hostProf">Post</button>  
-		</div>
-	</div>
-</div> */}
+                           
                           </>
                         );
                       }
@@ -485,27 +425,7 @@ function HostProf() {
                 </div>
               );
             })}
-            {/* <form onSubmit={onMessageSubmit}>
-				<h1>Messenger</h1>
-				<div className="name-field">
-					<TextField name="name" onChange={(e) => onTextChange(e)} value={state.name} label="Name" />
-				</div>
-				<div>
-					<TextField
-						name="message"
-						onChange={(e) => onTextChange(e)}
-						value={state.message}
-						id="outlined-multiline-static"
-						variant="outlined"
-						label="Message"
-					/>
-				</div>
-				<button>Send Message</button>
-			</form>
-			<div className="render-chat">
-			
-				{renderChat()}
-			</div> */}
+           
     </div>
   );
 }

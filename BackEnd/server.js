@@ -5,6 +5,8 @@ const app = express()
 const cookieParser = require('cookie-parser');
 const guestRouter = require("./router/guestRouter")
 const hostRouter = require("./router/hostRouter")
+const conversationRoute = require("./router/conversations");
+const messageRoute = require("./router/messages");
 const { checkGuest,checkHost } = require('./middleware/guestMiddleware');
 const http = require('http').createServer(app)
 const io = require('socket.io')(http) 
@@ -15,6 +17,8 @@ app.use(cors());
 // for file in router
 app.use('/guestRouter',guestRouter)
 app.use('/hostRouter',hostRouter)
+app.use('/conversationRoute',conversationRoute)
+app.use('/messageRoute',messageRoute)
 
 
 //conect db

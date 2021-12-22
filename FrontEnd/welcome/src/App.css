@@ -811,7 +811,7 @@ display: grid;
 .popup {
   margin: 70px auto;
   padding: 20px;
-  background: #fff;
+  background: rgb(46 163 168 / 28%);
   border-radius: 5px;
   width: 30%;
   position: relative;
@@ -834,17 +834,20 @@ display: grid;
   color: #333;
 }
 .popup .close:hover {
-  color: #06D85F;
+  color: rgba(6, 141, 126, 1);
 }
 .popup .content {
   max-height: 30%;
   overflow: auto;
 }
-
+.textarea{
+  padding:10px;
+  margin:3px;
+}
 .popupHost {
   margin: 70px auto;
   padding: 20px;
-  background: #fff;
+  background: rgb(46 163 168 / 28%);  
   border-radius: 5px;
   width: 30%;
   position: relative;

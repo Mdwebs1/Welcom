@@ -10,6 +10,8 @@ function LogIn() {
   const [email,setEmail] = useState("")
   // let [users, setUser] = useState();
   const [ckeck,setCheck] = useState("")
+  const [errors , setErrors] = useState({email:"", password:""});
+
   let navigate = useNavigate()
 
 
@@ -21,7 +23,7 @@ const userSignin=(e)=> {
     axios.post("http://localhost:8080/guestRouter/login",{email,password}).then((res) => {
    console.log(res);
    if(res.data.error){
-       alert('fals')
+       setErrors(res.data.errors)
            }if(res.data.guestUser){
                const token = res.data.guestUser;
                const guestSignin = jwt_decode(token)
@@ -50,8 +52,9 @@ const userSignin=(e)=> {
     e.preventDefault();
     axios.post("http://localhost:8080/hostRouter/login",{email,password}).then((res)=>{
       console.log(res); 
-      if(res.data.error){
-        alert('fals')
+      if(res.data.errors){
+        setErrors(res.data.errors)
+       
             }if(res.data.hostUser){
       const token = res.data.hostUser;
       // console.log(res.data.hostUser);
@@ -85,10 +88,11 @@ const userSignin=(e)=> {
              <video  loop muted src={vedio} autoplay="true" type="video/mp4" ></video>
                    <fieldset id="fld">
                    <legend>Sign In</legend>
+                   <p>{errors.email}</p>
                    <label for="email"></label>
                    <input onChange={(e) =>{setEmail(e.target.value)}} type="email" size="30" id="email" placeholder="Enter a Valid Email" maxlength="30" required></input><br/><br/>
 
-
+                   <p>{errors.password}</p>
                    <label for="pass"></label>
                    <input onChange={(e) =>{setPassword(e.target.value)}} type="password" size="30" id="pass" placeholder=" Password" maxlength="40" required></input><br/><br/>
 
