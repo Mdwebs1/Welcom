@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import '../host.css'
 import Sdo from './Sdo'
 
+
 function HostProf() {
   const [users, setUser] = useState();
   const [loading, setLoading] = useState(true);
@@ -43,7 +44,6 @@ function HostProf() {
   const storedToken = localStorage.getItem("token");
   if (storedToken) {
     decodedData = jwt_decode(storedToken, { payload: true });
-    console.log(decodedData);
     let expirationDate = decodedData.exp;
     var current_time = Date.now() / 1000;
     if (expirationDate < current_time) {
@@ -225,11 +225,8 @@ function HostProf() {
    
 
             {(function () {
-              console.log("function");
               if (decodedData != undefined) {
-                console.log("decoder");
                 if (decodedData.id === id) {
-                  console.log("helllo");
                   return (
                     <>
                       <div class="box">
@@ -365,11 +362,22 @@ function HostProf() {
               return (
                 <div key={index}>
                 <div className="homeInfo">
-               <div > 
+               <div style={{width:"30vw"}}> 
                <img className="homeInfoImg" src={home.image} alt="home image" />
                <div className="btn-group">
-                   <button className="btn-homeUpdate" onClick={() => { deleteHome(home._id); }} >الحذف</button>
+               {(function () {
+                if(decodedData!==undefined){
+                  if( decodedData.typeOfUser==="guestUser"){
+                    return(<></>)
+                  }if(decodedData.typeOfUser==="hostUser"){ 
+                    return(<>
+                      <button className="btn-homeUpdate" onClick={() => { deleteHome(home._id); }} >الحذف</button>
                     <a  onClick={(e) => { window.location.href = "#popup2";ubdate(e, home);}}>,<button className="btn-homeUpdate">الإضافة</button>  </a>
+                    </>)
+                  }
+                }
+               })()}
+                  
                    </div>
                </div>
                <div className="homeInfoDescription">

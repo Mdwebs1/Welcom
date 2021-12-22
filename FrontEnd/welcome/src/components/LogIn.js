@@ -22,8 +22,8 @@ const userSignin=(e)=> {
      e.preventDefault();
     axios.post("http://localhost:8080/guestRouter/login",{email,password}).then((res) => {
    console.log(res);
-   if(res.data.error){
-       setErrors(res.data.errors)
+   if(res.data.errors){
+       alert('fals')
            }if(res.data.guestUser){
                const token = res.data.guestUser;
                const guestSignin = jwt_decode(token)
@@ -53,8 +53,7 @@ const userSignin=(e)=> {
     axios.post("http://localhost:8080/hostRouter/login",{email,password}).then((res)=>{
       console.log(res); 
       if(res.data.errors){
-        setErrors(res.data.errors)
-       
+        alert('fals')
             }if(res.data.hostUser){
       const token = res.data.hostUser;
       // console.log(res.data.hostUser);
