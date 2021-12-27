@@ -66,6 +66,20 @@ router.get("/:id", (req, res) => {
   });
 
 
+// //get a user
+router.get("/", async (req, res) => {
+  const userId = req.query.userId;
+  const username = req.query.username;
+  try {
+    const user = userId
+      ? await Guest.findById(userId)
+      : await Guest.findOne({ username: username });
+    const { password, updatedAt, ...other } = user._doc;
+    res.status(200).json(other);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
    //post for guest signup;
 router.post("/signup",async (req, res) => {
@@ -127,7 +141,7 @@ router.post("/booking", (req, res) => {
    const findGuest= guest;
    console.log(findGuest);
    Schedule.findOne({host:findHost, date:req.body.date}).then((schedule) => {
-     console.log(req.body.date+"jjj")
+    //  console.log(req.body.date+"jjj")
      if(!schedule){
       Schedule.create({host:findHost,guest:findGuest,date:req.body.date}).then((schedule) =>{
         res.send(schedule);

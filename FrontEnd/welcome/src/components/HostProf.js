@@ -188,7 +188,10 @@ function HostProf() {
   return (
     <div>
        <Nav />
-       {typeOfUser !== 'guestUser' ? (
+      {(function (){
+        if (decodedData.id === id) {
+          return (
+            <>       {typeOfUser !== 'guestUser' ? (
 <>
         <a className="button" href="#popup2">
                          إضافة منزل
@@ -199,30 +202,35 @@ function HostProf() {
                     }}>
                           تحديث معلوماتك الشخصية
                         </a>
-                
+
             <button className="button" onClick={() => {navigate(`/Booking/${decodedData.id}`)}}><>طلبات الحجز</> </button>
+          <button className="button">Chat</button>
             </>
-       ): <></>}
-      
+       ): <></>}</>
+          )
+        }
+      })()}
+
+
     <div style={{display:'flex'}} >
-     
-   
+
+
        <Sdo/>
-     
+
           <div className=" containerHome container">
           <br></br>
           <br></br>
           <br></br>
             <h1 className="hostProfText">البيت بيتك والعين اوسع لك من المكان </h1>
-           
+
           <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-         
 
-            
 
-           
+
+
+
             {/* form for more information */}
-   
+
 
             {(function () {
               if (decodedData != undefined) {
@@ -230,7 +238,7 @@ function HostProf() {
                   return (
                     <>
                       <div class="box">
-                      
+
                       </div>
                       <div id="popup2" class="overlay">
                         <div class="popupHost">
@@ -251,7 +259,7 @@ function HostProf() {
                               <br />
                               <textarea className="textarea" placeholder="description" value={informations}  onChange={(e) => {setInformations(e.target.value);}}/>
                               <br />
-                            
+
                               {enablePost ? (<button className="btn-home">Post</button>) : (<></>   )}
 
                               {enableEdit ? (
@@ -270,7 +278,7 @@ function HostProf() {
 
                       {/* update profile */}
                       <div class="box">
-                  
+
                       </div>
 
                       <div id="popup1" class="overlay">
@@ -283,18 +291,9 @@ function HostProf() {
                               <input
                                 placeholder=" UserName"
                                 value={name}
-                                onChange={(e) => {
-                                  setName(e.target.value);
-                                }}
-                              />
+                                onChange={(e) => {setName(e.target.value); }}/>
                               <br />
-                              <input
-                                placeholder="Name"
-                                value={userName}
-                                onChange={(e) => {
-                                  setUserName(e.target.value);
-                                }}
-                              />
+                              <input placeholder="Name" value={userName} onChange={(e) => {setUserName(e.target.value);}}/>
                               <br />
                               <input
                                 placeholder="Email"
@@ -323,9 +322,7 @@ function HostProf() {
                               <br />
                               <button
                                 onClick={(e) => updateProfile(e)}
-                                className="btn-home"
-                              >
-                                updateProfile
+                                className="btn-home">updateProfile
                               </button>
                             </form>
                           </div>
@@ -337,39 +334,41 @@ function HostProf() {
                 console.log("decodedData");
                 console.log(decodedData.id);
               }
+
+
             })()}
 
-        
 
-       
+
+
 
             {startDate?.map((data, index) => (
               <div key={index}  >
                 <h3>{data.date}</h3>
-                <h3>{data.guest.userName}: الضيف</h3>
+                <h3>{data.guest.name}: الضيف</h3>
                 <h3>{data.host.name}: المستضيف</h3>
                 <img src={data.host.hostImage}></img>
               </div>
             ))}
-    
-          </div> 
-        
-    
+
+          </div>
+
+
     </div>
     <h1 className="hostIn">{users.name} : صاحب المنزل </h1>
-    
+
     {homes?.map((home, index) => {
               return (
                 <div key={index}>
                 <div className="homeInfo">
-               <div style={{width:"30vw"}}> 
+               <div style={{width:"30vw"}}>
                <img className="homeInfoImg" src={home.image} alt="home image" />
                <div className="btn-group">
                {(function () {
                 if(decodedData!==undefined){
                   if( decodedData.typeOfUser==="guestUser"){
                     return(<></>)
-                  }if(decodedData.typeOfUser==="hostUser"){ 
+                  }if(decodedData.typeOfUser==="hostUser"){
                     return(<>
                       <button className="btn-homeUpdate" onClick={() => { deleteHome(home._id); }} >الحذف</button>
                     <a  onClick={(e) => { window.location.href = "#popup2";ubdate(e, home);}}>,<button className="btn-homeUpdate">الإضافة</button>  </a>
@@ -377,14 +376,14 @@ function HostProf() {
                   }
                 }
                })()}
-                  
+
                    </div>
                </div>
                <div className="homeInfoDescription">
                   <h3 className="hostIn">{home.phoneNumber} : للتواصل</h3>
                   <h3 className="hostIn">{home.informations} : وصف المنزل</h3>
                 <div className="restor">
-                <button onClick={() => {booking();}} className="btn-restor"> تأكيد الحجز </button> 
+                <button onClick={() => {booking();}} className="btn-restor"> تأكيد الحجز </button>
              <DatePicker
               placeholder="اختر موعد القدوم"
               selected={selectedDate}
@@ -409,9 +408,9 @@ function HostProf() {
                   console.log("helllo");
                   return (
                     <>
-                   <br></br> 
-                
-                  
+                   <br></br>
+
+
                     </>
 
 )}}})()}
@@ -424,7 +423,7 @@ function HostProf() {
                         console.log("helllo");
                         return (
                           <>
-                           
+
                           </>
                         );
                       }
@@ -433,7 +432,7 @@ function HostProf() {
                 </div>
               );
             })}
-           
+
     </div>
   );
 }
