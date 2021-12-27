@@ -16,7 +16,7 @@
 
 - **Logout:** As a user I can logout from the platform so no one else can use it.
 
-- **house reservation **As a user I can book a house to stay in.
+- **House reservation** As a user I can book a house to stay in.
 
 - **View all homes** As a user, I want to see all the homes that I can book in and their owners and choose the appropriate one.
 
