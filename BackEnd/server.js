@@ -36,7 +36,7 @@ mongoose.connect(uri, {
 /**
  * Create HTTP server.
  */
- const port = parseInt(process.env.PORT || '8080');
+ var port = parseInt(process.env.PORT || '8080');
 app.set('port', port);
 
  const server = http.createServer(app);
@@ -53,7 +53,7 @@ app.set('port', port);
 const guests = [];
 io.on('connection', socket => {
   socket.on('message', ({ name, message }) => {
-    io.emit('message', { name, message })
+   // io.emit('message', { name, message })
     console.log('message', { name, message })
   })
 })

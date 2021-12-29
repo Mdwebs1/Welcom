@@ -1,6 +1,6 @@
 import React, {useEffect,useState} from 'react'
 import axios from 'axios'
-import {useParams} from "react-router-dom"
+import {useParams, useNavigate} from "react-router-dom"
 import jwt_decode from "jwt-decode"
 import Nav from './Nav'
 
@@ -12,6 +12,7 @@ function GuestProf() {
     let params = useParams();
     let {id} = useParams();
     console.log(params.id)
+    let navigate = useNavigate()
 
     //save informations in localStorage
 
@@ -43,6 +44,10 @@ function GuestProf() {
             }
         )
     }, [])
+    const chat = (id) => {
+
+        navigate(`/chat/${id}`)
+      }
 
     if(loading){
         return(
@@ -69,12 +74,14 @@ function GuestProf() {
 
                 return(
                     <div >
+                    <button className="button" onClick={() => chat(booking._id)}>Chat</button>
 
                     {(function(){
                     if(booking.bookingStatues =="Pending"){
                         return(
                             <div>
                                 <p>طلبك في الإنتظار</p>
+
                     <h3 className="guestProg">{booking.host.name}: حجزك مع</h3>
                     <h3 className="guestProg"> {booking.date}: الموعد</h3>
                    

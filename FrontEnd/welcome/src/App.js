@@ -46,7 +46,7 @@ function App() {
         <Route path="/Booking/:id" element={<Booking />}></Route>
         {/* <Route exact path="/Profile" element={<Profile />}></Route> */}
         <Route path="/Logout" element={<Logout />}></Route>
-        <Route path="/Chat" element={<Chat socket={socket} />}></Route>
+        <Route path="/Chat/:id" element={<Chat socket={socket} />}></Route>
       
       </Routes>
     </div>

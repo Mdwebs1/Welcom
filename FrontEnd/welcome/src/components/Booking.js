@@ -3,11 +3,15 @@ import axios from 'axios'
 import  {useEffect , useState} from 'react'
 import jwt_decode from "jwt-decode"
 import Nav from "./Nav";
+import {useNavigate } from "react-router-dom"
+
 
 
 function Booking() {
     const [allBookinh ,setAllBookinh] = useState([])
     const [loading,setLoading]=useState(true)
+    let navigate = useNavigate()
+
  
 
     let decodedData ;
@@ -59,6 +63,10 @@ function Booking() {
             }
         ) 
     }
+
+    const chat = (id) => {
+        navigate(`/chat/${id}`)
+      }
         // loding
         if(loading){
             return(
@@ -82,6 +90,8 @@ function Booking() {
                    <div className="btest"> 
                     <button className='booking-btn' onClick={(e) =>{accepted(booking._id)}}>Accept</button>
                 <button className='booking-btn' onClick={(e) =>{rejected(booking._id)}}>Rejected</button></div>
+                <button className="button" onClick={() => chat(booking._id)}>Chat</button>
+
               
                 </div>
            

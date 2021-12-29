@@ -36,8 +36,8 @@ function HostProf() {
   let { id } = useParams();
   let [homes, setHomes] = useState([]);
   let params = useParams();
-  console.log(id);
-  console.log(params.id);
+  // console.log(id);
+  // console.log(params.id);
 
   const navigate = useNavigate();
   let decodedData;
@@ -184,6 +184,7 @@ function HostProf() {
       });
   };
 
+ 
 
   return (
     <div>
@@ -382,7 +383,6 @@ function HostProf() {
                <div className="homeInfoDescription">
                   <h3 className="hostIn">{home.phoneNumber} : للتواصل</h3>
                   <h3 className="hostIn">{home.informations} : وصف المنزل</h3>
-                  <button className="button">Chat</button>
                 <div className="restor">
                 <button onClick={() => {booking();}} className="btn-restor"> تأكيد الحجز </button>
              <DatePicker

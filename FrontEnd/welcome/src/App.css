@@ -959,3 +959,9 @@ display: grid;
     transform: translate(50vh, 0vh);
   }
 }
+
+.message{
+  max-width: 200px;
+  min-width: 200px;
+  word-wrap: break-word;
+}
