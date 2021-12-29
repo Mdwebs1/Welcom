@@ -204,7 +204,7 @@ function HostProf() {
                         </a>
 
             <button className="button" onClick={() => {navigate(`/Booking/${decodedData.id}`)}}><>طلبات الحجز</> </button>
-          <button className="button">Chat</button>
+          
             </>
        ): <></>}</>
           )
@@ -382,6 +382,7 @@ function HostProf() {
                <div className="homeInfoDescription">
                   <h3 className="hostIn">{home.phoneNumber} : للتواصل</h3>
                   <h3 className="hostIn">{home.informations} : وصف المنزل</h3>
+                  <button className="button">Chat</button>
                 <div className="restor">
                 <button onClick={() => {booking();}} className="btn-restor"> تأكيد الحجز </button>
              <DatePicker

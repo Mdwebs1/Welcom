@@ -1,3 +1,5 @@
+
+
 const express = require("express");
 const mongoose = require('mongoose')
 const cors = require('cors');
@@ -8,8 +10,9 @@ const hostRouter = require("./router/hostRouter")
 const conversationRoute = require("./router/conversations");
 const messageRoute = require("./router/messages");
 const { checkGuest,checkHost } = require('./middleware/guestMiddleware');
-const http = require('http').createServer(app)
-const io = require('socket.io')(http) 
+const http = require('http')
+const socketio = require('socket.io');
+
 
 app.use(express.json());
 app.use(cookieParser());
@@ -21,6 +24,7 @@ app.use('/conversationRoute',conversationRoute)
 app.use('/messageRoute',messageRoute)
 
 
+
 //conect db
 const uri =
   "mongodb+srv://masha:mesh_r1995@masha.lhput.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
@@ -29,12 +33,32 @@ mongoose.connect(uri, {
   useUnifiedTopology: true,
 });
 
+/**
+ * Create HTTP server.
+ */
+ const port = parseInt(process.env.PORT || '8080');
+app.set('port', port);
+
+ const server = http.createServer(app);
+ var io = socketio(server,{
+   cors: {
+     origin: '*',
+     methods: ['GET', 'POST']
+   }
+ });
+ server.listen(port);
+//  chat(io);
+
 // socket.io
+const guests = [];
 io.on('connection', socket => {
   socket.on('message', ({ name, message }) => {
     io.emit('message', { name, message })
+    console.log('message', { name, message })
   })
 })
+
+
 
 // cookies
 
@@ -51,8 +75,7 @@ app.get('/set-cookies', (req, res) => {
       res.json(cookies)
   })
   
-  const PORT = process.env.PORT || 8080;
-  app.listen(PORT);
+
   const connection = mongoose.connection;
   connection.once(
     "open",

@@ -7,15 +7,28 @@ import LogIn from './components/LogIn';
 import GuestProf from './components/GuestProf'
 import HostProf from './components/HostProf'
 import Login from './components/LogIn'
+import {io} from 'socket.io-client';
 import ViewHomes from './components/ViewHomes'
 import Booking from './components/Booking'
 import Logout from './components/Logout'
+import Chat from './components/Chat'
+import  {useEffect , useState} from 'react'
+
 
 
 // import Profile from './components/Profile'
 
 
 function App() {
+  const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+    console.log("trying to connect to socket.io")
+    const newSocket = io(`http://localhost:8080`);
+    setSocket(newSocket);
+  
+  }, [setSocket]); 
+
   return (
     <div className="App">
     
@@ -33,6 +46,7 @@ function App() {
         <Route path="/Booking/:id" element={<Booking />}></Route>
         {/* <Route exact path="/Profile" element={<Profile />}></Route> */}
         <Route path="/Logout" element={<Logout />}></Route>
+        <Route path="/Chat" element={<Chat socket={socket} />}></Route>
       
       </Routes>
     </div>
