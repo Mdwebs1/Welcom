@@ -184,8 +184,13 @@ function HostProf() {
         
       })
       .then((response) => {
-        // console.log(response.data);
-        setStartDate([response.data]);
+        console.log(response.data);
+        if(response.data=="والله شوووف انا مش مش عايز انا ماعنديش"){ 
+          alert("ماتقدر تحجز عندي بنفس الوقت ")
+        }else{
+          setStartDate([response.data]);
+        }
+      
       });
   };
 
@@ -202,7 +207,8 @@ const setTime = (date) =>{
       {(function (){
         if (decodedData.id === id) {
           return (
-            <>       {typeOfUser !== 'guestUser' ? (
+            <> 
+                  {typeOfUser !== 'guestUser' ? (
 <>
         <a className="button" href="#popup2">
                          إضافة منزل
@@ -393,8 +399,11 @@ const setTime = (date) =>{
                <div className="homeInfoDescription">
                   <h3 className="hostIn">{home.phoneNumber} : للتواصل</h3>
                   <h3 className="hostIn">{home.informations} : وصف المنزل</h3>
-
-                <div className="restor">
+{(function(){
+  if (decodedData.id !== id){
+    
+    return (<> 
+      <div className="restor">
                 <button onClick={() => {booking();}} className="btn-restor"> تأكيد الحجز </button>
              <DatePicker
               placeholder="اختر موعد القدوم"
@@ -416,6 +425,12 @@ const setTime = (date) =>{
 
 
             </div>
+    </>)
+  }else{ 
+    <></>
+            }
+})()}
+             
                   </div>
                  </div>
                   {(function () {
