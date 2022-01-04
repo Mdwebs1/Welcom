@@ -34,12 +34,12 @@ function ViewHomes() {
 
 
       const handelSearch =(e)=>{
-        console.log(search)
+        // console.log(search)
         e.preventDefault();
         axios.get(`http://localhost:8080/hostRouter/findCity/${search}`)
         .then((res) => {
-          console.log("hello");
-          console.log(res.data);
+          // console.log("hello");
+          // console.log(res.data);
           setHomes(res.data)
         })
       }
@@ -98,29 +98,6 @@ function ViewHomes() {
   
         </div>
       
-
-       {/* ========================================== code amirah =========================== */}
-
-       {/* <div className="container-amirah">
-          <div className="card-amirah">
-            <div className="card-item-amirah">
-            <div className="card-title-amirah">
-            <h4>test name</h4>
-            <img className="img-amirah" style={{width: '60%'}} src={'https://www.befreetour.com/img/produk/img-worlds-of-adventure-dubai/img-worlds-of-adventure-dubai_c08a22f95d160733e13ab4c44c049fca06192e49.jpg'}/>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <button>test</button>
-            </div>
-            
-            </div>
-          </div>
-
-
-       </div> */}
-       {/* ========================================== code amirah =========================== */}
 
        
         </div>
