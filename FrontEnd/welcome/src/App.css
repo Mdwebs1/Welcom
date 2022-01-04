@@ -1,28 +1,7 @@
-/* .container-amirah{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-}
 
-.card-amirah{
-  grid-column-start:2;
-  grid-column-end:3 ;
-  background-color:#98baf8;
-  border-radius: 30px;
-
-}
-.card-item-amirah{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr ;
-}
-.card-title-amirah{
-  grid-column-start:  2;
-  grid-column-end: 3;
-} */
-
-/*====================== end code amirah ==============    */
 *{
   margin: 0%;
-  transition: all 300ms linear;
+  /* transition: all 300ms linear; */
 }
 
 .home {
@@ -70,17 +49,7 @@
   }
 }
 /* Nav css */
-/* 
-.nav{
-  display: flex;
-  justify-content: space-around;
-  background-color: rgb(110, 53, 53);
-  height: 10vh;
-  margin: 0%;
-  align-items: center;
-  list-style: none;
 
-}*/
 a{
   text-decoration: none;
   color:white;
@@ -190,7 +159,6 @@ h2::before {
 /* SignUp css */
 
 #frm{
-  margin-left:30vw;
   text-align: center;
   font-family: Leelawadee;
   padding-top: 30px;
@@ -247,11 +215,7 @@ input:focus{
 }
 
 /* ViewHomeCss */
-video{
-  width: 40vw;
-  height: 100%;
-  
-}
+
 
 .home-backgroundColor{
   background-color:rgb(209, 205, 205);
@@ -287,8 +251,6 @@ align-content: center;
   width: 19vw;
   height: 20vh;
   margin-top: 50px;
-
-
 }
 h4{
   text-align: center;
@@ -303,9 +265,9 @@ h4{
 }
 
  .Guest {
-  display: 'flex';
-  justify-Content: 'center';
-   gap: '100px';
+  display: flex;
+  justify-Content: center;
+   gap: 100px;
    width: 55vw;
    background-color: #f9fafa;
    border-radius: 5px;
@@ -878,8 +840,8 @@ display: grid;
 }
 .booking{
   background-image: url("https://freesvg.org/img/1639153518Camel-Silhouette-low-poly.png");
- background-color:rgb(222, 241, 222);
-  height: 100vh;
+  background-color:rgb(222, 241, 222);
+  height: 100vw;
   background-size: 30%;
   background-repeat: no-repeat;
   background-position: bottom left;
@@ -962,6 +924,157 @@ display: grid;
 
 .message{
   max-width: 200px;
-  min-width: 200px;
+  /* min-width: 200px; */
   word-wrap: break-word;
 }
+.div-chat{
+  height: 85vh;
+  overflow: scroll;
+}
+.message_title{
+  text-align: center;
+  color: gray;
+  font-weight: normal;
+}
+
+.actions{
+  display: none;
+}
+
+.messageInput{
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  width: 90%;
+  padding: 0 20px;
+}
+
+.messageInput input{
+  width: 100%;
+}
+
+.chat_title{
+  text-align: center;
+  background-color: rgb(211, 79, 79);
+  padding: 10px;
+}
+
+/* phone */
+
+@media only screen and (max-width: 600px){
+  /* sign-in */
+  video{
+    display:none;
+  }
+  #frm{
+    text-align: center;
+    font-family: Leelawadee;
+    padding-top: 30px;
+   
+  }
+  #fld{
+    width: 10%;
+    height: 70%;
+    box-shadow: 14px 14px 19px -1px rgba(0,0,0,0.33);
+    -webkit-box-shadow: 14px 14px 19px -1px rgba(0,0,0,0.33);
+    -moz-box-shadow: 14px 14px 19px -1px rgba(0,0,0,0.33);
+    margin: 100px auto;
+    padding-top: 30px;
+    border: none;
+  
+  }
+  legend{
+    font-size: 40px;
+    color:rgb(12, 12, 12);
+  }
+  #email{
+    color: lightslategray;
+  }
+  #pass{
+    color: lightslategray;
+  }
+  span{
+    color: red;
+  }
+  input{
+    text-align: center;
+    padding: 8px;
+  }
+  input:focus{
+    background-color: lavender;
+  }
+  .btn{
+    background-color: rgb(211, 79, 79);
+    border: 0;
+    border-radius: 3px;
+    padding: 10px;
+    width: 120px;
+    height: 40px;
+    cursor: pointer;
+    color: white;
+    transition: all 0.5s ease-in-out;
+    outline: 0;
+    margin-left: 4px;
+  }
+  .btn:hover{
+    background-color: rgb(47, 116, 27);
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px;
+  }
+  .signUpImage{
+    display:none;
+  }
+  .containerHome{
+  
+    display:grid;
+    grid-template-columns:1fr;
+    justify-items: center;
+    align-content: center;
+    }
+    .mapImg{
+      position: absolute;
+      width: 40%;
+      height: 10%;
+      object-fit: cover;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    .avatar{
+      width: 40vw;
+    }
+    .home-backgroundColor{
+      background-color:rgb(209, 205, 205);
+      height: 100%;
+    }
+    .animation{
+      display:none;
+    }
+    .inp-search{
+       width: 25vw;
+    }
+  
+    .guestProgBackground {
+ 
+   display: block;
+    }
+    .Guest{
+      display: block;
+      text-align: center;
+    }
+   .wrap {
+  width: auto;
+}
+  .house__base{
+  width: auto;
+}
+.guestProgImg{
+  width:30vw;
+}
+.popup , .popupHost {
+  width:70vw;
+}
+
+}
+
+/* taplet */
+

@@ -21,7 +21,7 @@ const userSignin=(e)=> {
 
      e.preventDefault();
     axios.post("http://localhost:8080/guestRouter/login",{email,password}).then((res) => {
-   console.log(res);
+  //  console.log(res);
    if(res.data.errors){
        alert('fals')
            }if(res.data.guestUser){
@@ -30,12 +30,12 @@ const userSignin=(e)=> {
                localStorage.setItem('token',token)
 
                alert('true')  
-               console.log(token)
+              //  console.log(token)
                let decodedData;
                const storedToken = localStorage.getItem("token");
                if (storedToken) {
                  decodedData = jwt_decode(storedToken, { payload: true });
-                 console.log(decodedData);
+                //  console.log(decodedData);
                  let expirationDate = decodedData.exp;
                  var current_time = Date.now() / 1000;
                  localStorage.setItem('id',decodedData.id)
@@ -48,11 +48,11 @@ const userSignin=(e)=> {
    
     })
   }else if(ckeck==="Host"){
-    console.log("res"); 
+    // console.log("res"); 
 
     e.preventDefault();
     axios.post("http://localhost:8080/hostRouter/login",{email,password}).then((res)=>{
-      console.log(res); 
+      // console.log(res); 
       if(res.data.errors){
         alert('fals')
             }if(res.data.hostUser){
@@ -66,7 +66,7 @@ const userSignin=(e)=> {
       const storedToken = localStorage.getItem("token");
       if (storedToken) {
         decodedData = jwt_decode(storedToken, { payload: true });
-        console.log(decodedData);
+        // console.log(decodedData);
         let expirationDate = decodedData.exp;
         var current_time = Date.now() / 1000;
         localStorage.setItem('id',decodedData.id)

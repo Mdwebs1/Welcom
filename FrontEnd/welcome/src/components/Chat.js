@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Message from "./Message";
 import firebaseDb from "../firebase";
+import Text from "./Text";
 import {useParams} from "react-router-dom"
+import Nav from './Nav'
+
 
 const Chat = () => {
     var [contactObjects, setContactObjects] = useState({})
@@ -11,7 +14,7 @@ const Chat = () => {
     let {id} = useParams();
 
     useEffect(() => {
-        console.log(user)
+        // console.log(user)
 
         firebaseDb.child(`contacts${id}`).on('value', snapshot => {
             if (snapshot.val() != null)
@@ -60,36 +63,22 @@ const Chat = () => {
     return (
         <>
             <div>
+            <Nav/>  
                 <div>
-                    <h1 >Chat</h1>
+                    <h1 className="chat_title" >Chat</h1>
                 </div>
             </div>
             <div>
-                <div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Massage</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
+                <div className='div-chat'>
+                <h3 className="message_title" >Messages</h3>
+
+                    <table  style={{width: '100%' ,padding: '20px'}} >
                         <tbody>
                             {
                                 Object.keys(contactObjects).map(id => {
-                                    return <tr style={{width: '500px'}} key={id}>
-                                        <div style={contactObjects[id].senderId === user ? {backgroundColor: 'red', textAlign: 'right'}: {backgroundColor: 'green', textAlign: 'left'}} >
-                                        <td className="message">{contactObjects[id].message}</td>
-                                        </div>
-                                        <td>
-                                            <button  onClick={() => { setCurrentId(id) }}>
-                                                Edit
-                                            </button>
-                                            <button onClick={() => { onDelete(id) }}>
-                                            Delete
-                                            </button>
-                                        </td>
-                                    </tr>
+                                    return         <Text id={id} onDelete={onDelete} setCurrentId={setCurrentId}
+                                      contactObjects={contactObjects[id]} user={user}/>
+
                                 })
                             }
                         </tbody>

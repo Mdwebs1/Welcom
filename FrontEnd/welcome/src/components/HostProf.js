@@ -4,11 +4,14 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import DatePicker from "react-datepicker";
+import { DateTimePicker } from '@mui/lab';
 import "react-datepicker/dist/react-datepicker.css";
 import Nav from "./Nav";
 import { useNavigate } from "react-router-dom";
 import '../host.css'
 import Sdo from './Sdo'
+
+
 
 
 function HostProf() {
@@ -58,7 +61,7 @@ function HostProf() {
   }, []);
   useEffect(() => {
     axios.get("http://localhost:8080/hostRouter/" + params.id).then((res) => {
-      console.log(res.data[0]);
+      // console.log(res.data[0]);
       setUser(res.data[0]);
       setHomes(res.data[0].homes);
       setLoading(false);
@@ -83,11 +86,11 @@ function HostProf() {
     axios
       .post(`http://localhost:8080/hostRouter/addHome/${id}`, obj)
       .then((res) => {
-        console.log(res.data.homes);
+        // console.log(res.data.homes);
         setHomes(res.data.homes);
       })
       .catch((error) => {
-        console.log(error.response);
+        // console.log(error.response);
       });
   };
   //delete Home Frome Host Prof
@@ -119,7 +122,7 @@ function HostProf() {
 
   const saveData = (e) => {
     e.preventDefault();
-    console.log("savvvv");
+    // console.log("savvvv");
     const obj = {
       informations: informations,
       phoneNumber: phoneNumber,
@@ -131,7 +134,7 @@ function HostProf() {
       .then((response) => {
         setHomes(response.data.data);
         setRefresh(!refresh);
-        console.log(response.data);
+        // console.log(response.data);
         setEnableEdit(false);
         setEnablePost(true);
       });
@@ -165,21 +168,23 @@ function HostProf() {
         setUser(response.data);
         setHomes(response.data.homes);
         setRefresh(!refresh);
-        console.log(response.data);
+        // console.log(response.data);
         setEnableProfile(false);
       });
   };
   //for booking
   const booking = () => {
-    console.log(id + "  " + decodedData.id + "   " + selectedDate);
+    // console.log(id + "  " + decodedData.id + "   " + selectedDate);
+    console.log(selectedDate)
     axios
       .post("http://localhost:8080/guestRouter/booking", {
         hostId: id,
         guestId: decodedData.id,
         date: selectedDate,
+        
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setStartDate([response.data]);
       });
   };
@@ -332,8 +337,8 @@ function HostProf() {
                     </>
                   );
                 }
-                console.log("decodedData");
-                console.log(decodedData.id);
+                {/* console.log("decodedData");
+                console.log(decodedData.id); */}
               }
 
 
@@ -372,7 +377,7 @@ function HostProf() {
                   }if(decodedData.typeOfUser==="hostUser"){
                     return(<>
                       <button className="btn-homeUpdate" onClick={() => { deleteHome(home._id); }} >الحذف</button>
-                    <a  onClick={(e) => { window.location.href = "#popup2";ubdate(e, home);}}>,<button className="btn-homeUpdate">الإضافة</button>  </a>
+                    <a  onClick={(e) => { window.location.href = "#popup2";ubdate(e, home);}}><button className="btn-homeUpdate">تعديل</button>  </a>
                     </>)
                   }
                 }
@@ -383,30 +388,34 @@ function HostProf() {
                <div className="homeInfoDescription">
                   <h3 className="hostIn">{home.phoneNumber} : للتواصل</h3>
                   <h3 className="hostIn">{home.informations} : وصف المنزل</h3>
+
                 <div className="restor">
                 <button onClick={() => {booking();}} className="btn-restor"> تأكيد الحجز </button>
              <DatePicker
               placeholder="اختر موعد القدوم"
               selected={selectedDate}
               onChange={(date) => setSelectedDate(date)}
+              // onChange={(date) => console.log(date)}
+
               dateFormat="dd/MM/yyyy"
               minDate={new Date()}
               isClearable
-              showTimeSelect
-              timeFormat="HH:mm"
-              timeIntervals={15}
-              timeCaption="time"
+              // showTimeSelect
+              // timeFormat="HH:mm"
+              // timeIntervals={15}
+              // timeCaption="time"
              ></DatePicker>
+
 
             </div>
                   </div>
                  </div>
                   {(function () {
-              console.log("function");
+              {/* console.log("function"); */}
               if (decodedData != undefined) {
-                console.log("decoder");
+                {/* console.log("decoder"); */}
                 if (decodedData.id === id) {
-                  console.log("helllo");
+                  {/* console.log("helllo"); */}
                   return (
                     <>
                    <br></br>
@@ -417,11 +426,11 @@ function HostProf() {
 )}}})()}
 
                   {(function () {
-                    console.log("function");
+                    {/* console.log("function"); */}
                     if (decodedData != undefined) {
-                      console.log("decoder");
+                      {/* console.log("decoder"); */}
                       if (decodedData.id === id) {
-                        console.log("helllo");
+                        {/* console.log("helllo"); */}
                         return (
                           <>
 

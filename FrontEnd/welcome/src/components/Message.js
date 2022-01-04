@@ -28,7 +28,7 @@ const Message = (props) => {
         props.addOrEdit(values)
     }
     return (
-        <form autoComplete="off" onSubmit={handleFormSubmit}>
+        <form className="messageInput" autoComplete="off" onSubmit={handleFormSubmit}>
                 <input className="form-control" placeholder="Message" name="message"
                     value={values.message}
                     onChange={handleInputChange}

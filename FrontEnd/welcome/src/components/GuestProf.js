@@ -11,7 +11,7 @@ function GuestProf() {
     const [allBookinh ,setAllBookinh] = useState([])
     let params = useParams();
     let {id} = useParams();
-    console.log(params.id)
+    // console.log(params.id)
     let navigate = useNavigate()
 
     //save informations in localStorage
@@ -20,7 +20,7 @@ function GuestProf() {
     const storedToken = localStorage.getItem("token");
     if (storedToken){
       decodedData = jwt_decode(storedToken, { payload: true });
-       console.log(decodedData);
+    //    console.log(decodedData);
        let expirationDate = decodedData.exp;
         var current_time = Date.now() / 1000;
         if(expirationDate < current_time)
@@ -32,14 +32,14 @@ function GuestProf() {
     useEffect(() => {
         axios.get("http://localhost:8080/guestRouter/"+id )
         .then((res) => {
-           console.log(res)
+        //    console.log(res)
             setUser(res.data[0])
             setLoading(false)
             }
         )
         axios.get(`http://localhost:8080/hostRouter/booking/${decodedData.id}`)
         .then((res) => {
-           console.log(res)
+        //    console.log(res)
            setAllBookinh(res.data)
             }
         )
@@ -55,13 +55,15 @@ function GuestProf() {
         )
     }
     
-
+ 
     return (
         
-        <div >
+        <div style={
+        {overflow: 'hidden'}
+        } >
              <Nav/>  
         <div className="guestProgBackground" >
-            <div className="Guest" style={{display: 'flex', justifyContent: 'center', gap: '100px'}}>
+            <div className="Guest" >
     <img className="guestProgImg" src="https://i.pinimg.com/236x/20/0d/72/200d72a18492cf3d7adac8a914ef3520.jpg"></img>
 
     <div>
@@ -83,9 +85,10 @@ function GuestProf() {
                                 <p>طلبك في الإنتظار</p>
 
                     <h3 className="guestProg">{booking.host.name}: حجزك مع</h3>
-                    <h3 className="guestProg"> {booking.date}: الموعد</h3>
-                   
+                    <h3 className="guestProg">  {Date(booking.date)}: الموعد</h3>
                     <img className="guestProg" src={booking.host.hostImage}></img> 
+                    هذا التوقيت غير رسمي يجب عليك التواصل مع المستضيف
+
                             </div>
                         )
                     }

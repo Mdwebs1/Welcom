@@ -18,7 +18,7 @@ function Booking() {
     const storedToken = localStorage.getItem("token");
     if (storedToken){
       decodedData = jwt_decode(storedToken, { payload: true });
-       console.log(decodedData);
+    //    console.log(decodedData);
        let expirationDate = decodedData.exp;
         var current_time = Date.now() / 1000;
         if(expirationDate < current_time)
@@ -30,9 +30,9 @@ function Booking() {
      useEffect(() => {
         axios.get(`http://localhost:8080/hostRouter/booking/${decodedData.id}`)
         .then((res) => {
-           console.log(res.data)
+        //    console.log(res.data)
            setAllBookinh(res.data)
-         
+        
            setLoading(false)
             }
         )
@@ -41,7 +41,7 @@ function Booking() {
  
     useEffect(() => {
   
-  console.log(allBookinh)
+//   console.log(allBookinh)
     }, [allBookinh])
 
 
@@ -49,7 +49,7 @@ function Booking() {
             
         axios.patch("http://localhost:8080/hostRouter/acceptedBokking",{id,hostID:decodedData.id})
         .then((res) => {
-           console.log(res)
+        //    console.log(res)
            setAllBookinh(res.data)
             }
         )
@@ -58,7 +58,7 @@ function Booking() {
     const rejected =(id)=>{
         axios.patch("http://localhost:8080/hostRouter/rejectedBooking",{id,hostID:decodedData.id})
         .then((res) => {
-           console.log(res)
+        //    console.log(res)
            setAllBookinh(res.data)
             }
         ) 
@@ -75,7 +75,6 @@ function Booking() {
         }
     return (
         <div className="booking">
-       
 <div className="bookingTest">
           <Nav />
 <div className='boking-center'>

@@ -35,7 +35,7 @@ function SignUp() {
             localStorage.setItem("token", token);
             let decodedData;
             const storedToken = localStorage.getItem("token");
-            console.log(storedToken);
+            // console.log(storedToken);
             if (storedToken) {
               decodedData = await jwt_decode(storedToken, { payload: true });
               console.log(decodedData);
@@ -45,7 +45,7 @@ function SignUp() {
                 localStorage.removeItem("token");
               }
             }
-            console.log("guest");
+            // console.log("guest");
             alert(`أرررحب  ${name}`); 
             navigate("/GuestProf/" + decodedData.id);
 
@@ -54,7 +54,7 @@ function SignUp() {
 
         });
 
-      console.log("guest");
+      // console.log("guest");
     } else if (ckeck === "Host") {
       axios
         .post("http://localhost:8080/hostRouter/signup", {
@@ -72,10 +72,10 @@ function SignUp() {
             localStorage.setItem("token", token);
             let decodedData;
             const storedToken = localStorage.getItem("token");
-            console.log(storedToken);
+            // console.log(storedToken);
             if (storedToken) {
               decodedData = await jwt_decode(storedToken, { payload: true });
-              console.log(decodedData);
+              // console.log(decodedData);
               let expirationDate = decodedData.exp;
               var current_time = Date.now() / 1000;
               if (expirationDate < current_time) {
@@ -90,13 +90,13 @@ function SignUp() {
           // setHost(res.data.hostUser)
 
         });
-      console.log("host");
+      // console.log("host");
     }
   };
 
   return (
     <div className="signUp">
-      <img src="https://i.pinimg.com/564x/f3/ac/ed/f3aced989a07f2f345d6d53dde818784.jpg"></img>
+      <img className="signUpImage" src="https://i.pinimg.com/564x/f3/ac/ed/f3aced989a07f2f345d6d53dde818784.jpg"></img>
       {/* <video  loop muted src={vedio} autoplay="true" type="video/mp4" ></video> */}
       <fieldset id="fld">
         <legend>Sign Up</legend>
