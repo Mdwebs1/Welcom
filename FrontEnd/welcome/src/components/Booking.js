@@ -87,9 +87,9 @@ function Booking() {
                 <h3>{booking.bookingStatues} : حالة الطلب</h3> 
                   
                    <div className="btest"> 
-                    <button className='booking-btn' onClick={(e) =>{accepted(booking._id)}}>Accept</button>
-                <button className='booking-btn' onClick={(e) =>{rejected(booking._id)}}>Rejected</button></div>
-                <button className="button" onClick={() => chat(booking._id)}>Chat</button>
+                    <button className='booking-btn' onClick={(e) =>{accepted(booking._id)}}>قبول</button>
+                <button className='booking-btn' onClick={(e) =>{rejected(booking._id)}}>رفض</button></div>
+                <button className="button" onClick={() => chat(booking._id)}>محادثة</button>
 
               
                 </div>

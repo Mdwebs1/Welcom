@@ -39,7 +39,7 @@ function GuestProf() {
         )
         axios.get(`http://localhost:8080/hostRouter/booking/${decodedData.id}`)
         .then((res) => {
-        //    console.log(res)
+           console.log(res)
            setAllBookinh(res.data)
             }
         )
@@ -73,7 +73,7 @@ function GuestProf() {
             
 
              {allBookinh.map((booking)=>{
-
+                 {console.log(booking.date)}
                 return(
                     <div >
                     <button className="button" onClick={() => chat(booking._id)}>Chat</button>
@@ -85,7 +85,7 @@ function GuestProf() {
                                 <p>طلبك في الإنتظار</p>
 
                     <h3 className="guestProg">{booking.host.name}: حجزك مع</h3>
-                    <h3 className="guestProg">  {Date(booking.date)}: الموعد</h3>
+                    <h3 className="guestProg">  {booking.date}: الموعد</h3>
                     <img className="guestProg" src={booking.host.hostImage}></img> 
                     هذا التوقيت غير رسمي يجب عليك التواصل مع المستضيف
 

@@ -180,7 +180,7 @@ function HostProf() {
       .post("http://localhost:8080/guestRouter/booking", {
         hostId: id,
         guestId: decodedData.id,
-        date: selectedDate,
+        date: selectedDate.setUTCHours(selectedDate.getUTCHours()+3),
         
       })
       .then((response) => {
@@ -190,7 +190,12 @@ function HostProf() {
   };
 
  
-
+const setTime = (date) =>{
+  
+ 
+  console.log( date.setUTCHours(date.getUTCHours()))
+  setSelectedDate( date)
+}
   return (
     <div>
        <Nav />
@@ -394,16 +399,19 @@ function HostProf() {
              <DatePicker
               placeholder="اختر موعد القدوم"
               selected={selectedDate}
-              onChange={(date) => setSelectedDate(date)}
-              // onChange={(date) => console.log(date)}
+              // onChange={(date) => setSelectedDate(date.setHours(date.getHours()))}
+              onChange={(date) => {
+                console.log(date)
+                setTime(date)
+              }}
 
               dateFormat="dd/MM/yyyy"
               minDate={new Date()}
               isClearable
-              // showTimeSelect
-              // timeFormat="HH:mm"
-              // timeIntervals={15}
-              // timeCaption="time"
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={15}
+              timeCaption="time"
              ></DatePicker>
 
 
