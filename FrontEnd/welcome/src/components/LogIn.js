@@ -4,6 +4,7 @@ import axios from "axios"
 import {useNavigate } from "react-router-dom"
 import jwt_decode from "jwt-decode";
 import vedio from '../vedio/vedio.mp4'
+import swal from 'sweetalert2'
 
 function LogIn() {
   const [password,setPassword] = useState()
@@ -21,7 +22,11 @@ const userSignin=(e)=> {
 
      e.preventDefault();
     axios.post("http://localhost:8080/guestRouter/login",{email,password}).then((res) => {
-  //  console.log(res);
+  //  console.log(res); 
+  swal.fire({
+    icon: "success",
+    text: "You are logged in!",
+  });
    if(res.data.errors){
        alert('fals')
            }if(res.data.guestUser){
@@ -29,7 +34,9 @@ const userSignin=(e)=> {
                const guestSignin = jwt_decode(token)
                localStorage.setItem('token',token)
 
-               alert('true')  
+              
+              
+              //  alert('true')  
               //  console.log(token)
                let decodedData;
                const storedToken = localStorage.getItem("token");
@@ -60,7 +67,10 @@ const userSignin=(e)=> {
       // console.log(res.data.hostUser);
       const hostSignin = jwt_decode(token)
      localStorage.setItem('token',token)
-      alert('true')  
+     swal.fire({
+      icon: "success",
+      text: "You are logged in!",
+    });  
 
       let decodedData;
       const storedToken = localStorage.getItem("token");

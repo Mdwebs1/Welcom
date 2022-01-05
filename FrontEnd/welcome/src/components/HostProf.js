@@ -11,6 +11,8 @@ import { useNavigate } from "react-router-dom";
 import '../host.css'
 import Sdo from './Sdo'
 import {Image} from 'cloudinary-react';
+import swal from 'sweetalert2'
+
  
 
 
@@ -203,14 +205,20 @@ function HostProf() {
         
       })
       .then((response) => {
-        console.log(response.data);
+        console.log(response)
         if(response.data=="والله شوووف انا مش مش عايز انا ماعنديش"){ 
-          alert("ماتقدر تحجز عندي بنفس الوقت ")
+      
+          swal.fire({
+            icon: 'error',
+            text: "ماتقدر تحجز عندي بنفس الوقت",
+            confirmButtonText: 'حسنا'
+         })
+      
         }else{
           setStartDate([response.data]);
         }
       
-      });
+       });
   };
 
  
