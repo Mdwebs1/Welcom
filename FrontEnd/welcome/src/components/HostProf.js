@@ -10,6 +10,8 @@ import Nav from "./Nav";
 import { useNavigate } from "react-router-dom";
 import '../host.css'
 import Sdo from './Sdo'
+import {Image} from 'cloudinary-react';
+ 
 
 
 
@@ -34,6 +36,8 @@ function HostProf() {
   const [startDate, setStartDate] = useState();
   const [typeOfUser, setTypeOfUser] = useState();
   const [city , setCity] = useState();
+  const [imageSelect , setImageSelect] = useState('');
+
 
 
   let { id } = useParams();
@@ -119,6 +123,21 @@ function HostProf() {
     setEnableEdit(true);
     setEnablePost(false);
   };
+
+  //uploadImage
+
+  const uploadImage = ()=>{
+    const formData = new FormData()
+    formData.append("file" , imageSelect)
+    formData.append("upload_preset" , "xm0p2wbe")
+
+    axios.post("https://api.cloudinary.com/v1_1/dcedysmz7/image/upload", formData)
+    .then((response)=>{
+      setRefresh(!refresh);
+      console.log(response.data.secure_url)
+      setHomeImage(response.data.secure_url)
+    })
+    }
 
   const saveData = (e) => {
     e.preventDefault();
@@ -264,15 +283,19 @@ const setTime = (date) =>{
                           </a>
                           <div class="content">
                             <form onSubmit={(e) => Addhome(e)} className="pop-form">
-                              <input
+                              {/* <input
                                 placeholder=" Home Image"
                                 value={homeImage}
                                 onChange={(e) => {
                                   setHomeImage(e.target.value);
                                 }}
-                              />
+                              /> */}
+                                  <input type='file' onChange={(e) => {setImageSelect(e.target.files[0])}}></input>
+                                  <button onClick={uploadImage}>حمل الصوره</button>
+                                  <Image cloudName="dcedysmz7" />
+
                               <br />
-                              <input placeholder="phoneNumber"value={phoneNumber}onChange={(e) => { setPhoneNumber(e.target.value) }}/>
+                              <input placeholder="phoneNumber" value={phoneNumber} onChange={(e) => { setPhoneNumber(e.target.value) }}/>
                               <br />
                               <textarea className="textarea" placeholder="description" value={informations}  onChange={(e) => {setInformations(e.target.value);}}/>
                               <br />
