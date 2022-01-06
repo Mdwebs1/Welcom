@@ -39,6 +39,8 @@ function HostProf() {
   const [typeOfUser, setTypeOfUser] = useState();
   const [city , setCity] = useState();
   const [imageSelect , setImageSelect] = useState('');
+  const [imageSelectProfile , setImageSelectProfile] = useState('');
+
 
 
 
@@ -180,7 +182,7 @@ function HostProf() {
       name: name,
       userName: userName,
       email: userEmail,
-      hostImage: userImage,
+      hostImage: homeImage,
       city: city,
     };
     axios
@@ -308,13 +310,13 @@ const setTime = (date) =>{
                               <textarea className="textarea" placeholder="description" value={informations}  onChange={(e) => {setInformations(e.target.value);}}/>
                               <br />
 
-                              {enablePost ? (<button className="btn-home">Post</button>) : (<></>   )}
+                              {enablePost ? (<button className="btn-home">نشر</button>) : (<></>   )}
 
                               {enableEdit ? (
                                 <a href="#">
                                   <button
                                     onClick={(e) => saveData(e)}
-                                    className="btn-home">save</button>
+                                    className="btn-home">حفظ</button>
                                 </a>
                               ) : (
                                 <></>
@@ -360,17 +362,24 @@ const setTime = (date) =>{
                                 }}
                               />
                               <br />
-                              <input
+                              {/* <input
                                 placeholder="UserImage"
                                 value={userImage}
                                 onChange={(e) => {
                                   setUserImage(e.target.value);
                                 }}
-                              />
+                              /> */}
+                                <input type='file' onChange={(e) => {
+                                  e.preventDefault();
+                                setImageSelect(e.target.files[0])}}></input>
+                                  <button onClick={uploadImage}>حمل الصوره</button>
+                                  <Image cloudName="dcedysmz7" />
+
+                              
                               <br />
                               <button
                                 onClick={(e) => updateProfile(e)}
-                                className="btn-home">updateProfile
+                                className="btn-home">حدث الملف الشخصي
                               </button>
                             </form>
                           </div>
